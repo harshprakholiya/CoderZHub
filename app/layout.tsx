@@ -4,6 +4,7 @@ import React from "react";
 // eslint-disable-next-line camelcase
 import { Inter, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/context/themeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "CoderZHub",
   description:
     "CoderZHub is a community of developers for asking and answering programming questions. We are a community of like-minded people who want to learn, create, and grow together.",
@@ -30,20 +31,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider
-      appearance={{
-        elements: {
-          formButtonPrimary: 'primary-gradient',
-          footerActionLink: 'text-primary-gradient hover:text-primary-600'
-        }
-      }}  
-    
-    >
-      <html lang="en">
-        <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+        <ClerkProvider
+          appearance={{
+            elements: {
+              formButtonPrimary: "primary-gradient",
+              footerActionLink: "text-primary-gradient hover:text-primary-600",
+            },
+          }}
+        >
+          <ThemeProvider>{children}</ThemeProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
