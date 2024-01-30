@@ -9,6 +9,11 @@ body {
 }
 
 @layer utilities {
+
+  .background-background_paper{
+    @apply bg-white dark:bg-background-paper
+  }
+
   .flex-center {
     @apply flex justify-center items-center;
   }

@@ -5,6 +5,15 @@
 
 @layer utilities {
 
+  .background-default_bg_primary50{
+    @apply bg-primary-50 dark:bg-background-default 
+  }
+
+  .background-background_paper_primary-dark100{
+    @apply dark:bg-background-paper 
+    bg-white 
+  }
+
   .h1-bold {
     @apply text-[30px] font-bold leading-[42px] tracking-tighter;
   }
