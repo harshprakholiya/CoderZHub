@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Theme from "./Theme";
+import MobileNav from "./MobileNav";
+import GlobalSearch from "../search/GlobalSearch";
 
 const Navbar = () => {
   return (
@@ -19,15 +21,15 @@ const Navbar = () => {
           CoderZ<span className="primary-text-gradient">Hub</span>
         </p>
       </Link>
-      Search
-      <div className="flex-between gap-2">
-        <SignedIn>
+      <GlobalSearch />
+      <div className="flex-between gap-1">
           <Theme />
+        <SignedIn>
           <UserButton
             afterSignOutUrl="/"
             appearance={{
               elements: {
-                avatarBox: "h-6 w-6",
+                avatarBox: "h-7 w-7",
               },
               variables: {
                 colorPrimary: "#007FFF",
@@ -35,6 +37,7 @@ const Navbar = () => {
             }}
           />
         </SignedIn>
+        <MobileNav />
       </div>
     </nav>
   );

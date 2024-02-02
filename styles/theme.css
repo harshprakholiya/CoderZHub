@@ -14,6 +14,27 @@
     bg-primary-500
   }
 
+  .background-navbar_bg{
+    @apply bg-white dark:bg-background-paper
+  }
+
+  .btn-primary {
+    @apply bg-primaryDark-100 dark:bg-primaryDark-500 !important
+  }
+  .btn-secondary {
+    @apply bg-grey-300 dark:bg-primaryDark-700 border border-divider !important
+  }
+  .invert-colors{
+    @apply invert dark:invert-0
+  }
+  .search_background {
+    @apply bg-secondary-50 dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
+  }
+
+  .text-invert{
+    @apply text-gray-900 dark:text-gray-50
+  }
+
   .h1-bold {
     @apply text-[30px] font-bold leading-[42px] tracking-tighter;
   }
@@ -101,4 +122,5 @@
       rgba(20, 26, 31, 0.7) 100%
     );
   }
+
 }

@@ -17,7 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </section>
 
         right sidebar
-      </div>z
+      </div>
 
       Notifications
     </main>
