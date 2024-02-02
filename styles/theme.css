@@ -6,12 +6,12 @@
 @layer utilities {
 
   .background-default_bg_primary50{
-    @apply bg-primary-50 dark:bg-background-default 
+    @apply bg-white dark:bg-background-default 
   }
 
-  .background-background_paper_primary-dark100{
+  .background-background_paper{
     @apply dark:bg-background-paper 
-    bg-white 
+    bg-primary-500
   }
 
   .h1-bold {

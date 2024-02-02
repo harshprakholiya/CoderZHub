@@ -154,6 +154,7 @@ module.exports = {
           "dark": '#0288d1',
           "contrastText": 'rgba(0, 0, 0, 0.87)',
         },
+        divider: 'rgba(59, 74, 89, 0.05)',
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
