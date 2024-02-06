@@ -1,11 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
-
 export default function Home() {
   return (
     <main>
-      <UserButton />
-      <Button>Click me</Button>
+      <h1 className="flex-center h1-bold primary-text-gradient">Home</h1>
     </main>
   );
 }

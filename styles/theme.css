@@ -30,6 +30,12 @@
   .search_background {
     @apply bg-secondary-50 dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
   }
+  .navbar_lg_background{
+    @apply dark:bg-background-paper
+    bg-primary-50
+    border-r-divider 
+    shadow-light-300 dark:shadow-none
+  }
 
   .text-invert{
     @apply text-gray-900 dark:text-gray-50

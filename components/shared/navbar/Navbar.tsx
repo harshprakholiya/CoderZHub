@@ -23,7 +23,7 @@ const Navbar = () => {
       </Link>
       <GlobalSearch />
       <div className="flex-between gap-1">
-          <Theme />
+        <Theme />
         <SignedIn>
           <UserButton
             afterSignOutUrl="/"
