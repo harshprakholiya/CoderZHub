@@ -11,8 +11,8 @@ import { SignedOut } from '@clerk/nextjs';
 const LeftSidebar = () => {
   const pathName = usePathname();
   return (
-    <section className="dark: custom-scrollbar navbar_lg_background sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r border-none p-6 pt-10  max-sm:hidden lg:w-[266px]">
-      <div className=" flex h-full flex-col gap-6 pt-16">
+    <section className="dark: custom-scrollbar navbar_lg_background sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r-2 p-6 pt-5 shadow-md  dark:border-none max-sm:hidden lg:w-[266px]">
+      <div className=" flex h-full flex-col gap-4 pt-16">
         {sidebarLinks.map((item) => {
           const isActive =
             (pathName.includes(item.route) && item.route.length < 0) ||
@@ -20,7 +20,7 @@ const LeftSidebar = () => {
           return (
             <Link
               href={item.route}
-              className={`${isActive ? 'primary-gradient rounded-lg text-white ' : 'text-invert rounded-lg hover:bg-primaryDark-100 dark:hover:bg-primaryDark-600'} flex items-center justify-start gap-4 bg-transparent p-3`}
+              className={`${isActive ? 'primary-gradient rounded-lg text-white ' : 'text-invert rounded-lg hover:bg-primaryDark-100 dark:hover:bg-primaryDark-600'} flex items-center justify-start gap-4 bg-transparent p-3 duration-150 ease-in-out`}
               key={item.route}
             >
               <Image
@@ -41,9 +41,9 @@ const LeftSidebar = () => {
       </div>
 
       <SignedOut>
-        <div className="flex flex-col gap-3">
+        <div className="mt-[20px] flex flex-col gap-3">
           <Link href="/sign-in">
-            <Button className="body-medium btn-primary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none ">
+            <Button className="body-medium btn-primary min-h-[41px] w-full rounded-lg  py-3 shadow-none ">
               <Image
                 src="/assets/icons/account.svg"
                 alt="login"

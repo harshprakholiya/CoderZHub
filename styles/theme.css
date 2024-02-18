@@ -5,6 +5,11 @@
 
 @layer utilities {
 
+  .background-bg_white_dark-primary800
+  {
+    @apply bg-white dark:bg-primaryDark-800
+  }
+
   .background-default_bg_primary50{
     @apply bg-white dark:bg-background-default 
   }
@@ -30,16 +35,30 @@
   .search_background {
     @apply bg-secondary-50 dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
   }
+  .filter_background {
+    @apply dark:shadow-none border-grey-200 dark:border-none dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
+  }
   .navbar_lg_background{
     @apply dark:bg-background-paper
-    bg-primary-50
+    bg-[#Fdfdfd]
     border-r-divider 
     shadow-light-300 dark:shadow-none
+  }
+
+  .text-invert-secondary{
+    @apply text-gray-600 dark:text-gray-300
   }
 
   .text-invert{
     @apply text-gray-900 dark:text-gray-50
   }
+
+  .tag-bg{
+    @apply bg-transparent border-primary-main dark:border-primary-200 text-primary-800
+    dark:text-primary-200
+  }
+
+  /* Font styles  */
 
   .h1-bold {
     @apply text-[30px] font-bold leading-[42px] tracking-tighter;
