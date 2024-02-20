@@ -27,7 +27,9 @@ body {
   }
 
   .card-wrapper {
-    @apply bg-light-900 dark:dark-gradient shadow-light-100 dark:shadow-dark-100;
+    @apply bg-gray-100
+    dark:bg-primaryDark-800
+    shadow-sm
   }
 
   .markdown {

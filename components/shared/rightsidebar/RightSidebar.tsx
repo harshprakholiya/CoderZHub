@@ -25,27 +25,27 @@ const hotQuestions = [
 
 const popularTags = [
   {
-    _id: 1,
+    _id: '1',
     name: 'React',
     totalQuestions: 100,
   },
   {
-    _id: 2,
+    _id: '2',
     name: 'Next.js',
     totalQuestions: 50,
   },
   {
-    _id: 3,
+    _id: '3',
     name: 'Redux',
     totalQuestions: 70,
   },
   {
-    _id: 4,
+    _id: '4',
     name: 'React-Query',
     totalQuestions: 30,
   },
   {
-    _id: 5,
+    _id: '5',
     name: 'TypeScript',
     totalQuestions: 20,
   },
