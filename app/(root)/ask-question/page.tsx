@@ -1,8 +1,14 @@
+import Question from '@/components/forms/Question';
 import React from 'react';
 
 const AskQuestion = () => {
   return (
-    <div className="flex-center primary-text-gradient h1-bold">AskQuestion</div>
+    <div>
+      <h1 className="h1-bold text-invert flex-center w-full">Ask a Question</h1>
+      <div className="mt-9">
+        <Question />
+      </div>
+    </div>
   );
 };
 
