@@ -27,9 +27,11 @@ const Metric = ({
         alt={alt}
         width={16}
         height={16}
-        className={` object-contain ${href ? 'cursor-pointer rounded-full' : ''}`}
+        className={` object-contain ${href ? ' rounded-full' : ''}`}
       />
-      <p className={`flex cursor-default items-center gap-1 ${textStyles}`}>
+      <p
+        className={`flex cursor-default items-center gap-1 ${textStyles} ${href ? 'cursor-pointer' : ''}`}
+      >
         {value}
 
         <span

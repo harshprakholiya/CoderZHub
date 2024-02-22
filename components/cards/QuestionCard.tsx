@@ -73,6 +73,7 @@ const QuestionCard = ({
           title="Answers"
           textStyles="small-medium card-text-invert-secondary"
           value={formatNumber(answers.length)}
+          href={`/question/${_id}`}
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
