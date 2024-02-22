@@ -54,30 +54,31 @@ const QuestionCard = ({
           imgUrl={author.picture}
           alt="avatar"
           title={` - asked ${getTimeStamps(createdAt)}`}
-          textStyles="body-medium text-invert"
+          textStyles="body-medium card-text-invert-secondary"
           href={`/profile/${author._id}`}
           isAuthor
           value={author.name}
         />
+        
         <Metric
           imgUrl="/assets/icons/like.svg"
           alt="upvotes"
           title="Votes"
-          textStyles="small-medium text-invert"
+          textStyles="small-medium card-text-invert-secondary"
           value={formatNumber(upvotes)}
         />
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="message"
           title="Answers"
-          textStyles="small-medium text-invert"
+          textStyles="small-medium card-text-invert-secondary"
           value={formatNumber(answers.length)}
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="eye"
           title="Views"
-          textStyles="small-medium text-invert"
+          textStyles="small-medium card-text-invert-secondary"
           value={formatNumber(views)}
         />
       </div>

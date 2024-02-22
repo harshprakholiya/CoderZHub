@@ -49,6 +49,10 @@
     @apply text-gray-600 dark:text-gray-300
   }
 
+  .card-text-invert-secondary{
+    @apply text-primaryDark-800 dark:text-primaryDark-200  
+  }
+
   .text-invert{
     @apply text-gray-900 dark:text-gray-50
   }

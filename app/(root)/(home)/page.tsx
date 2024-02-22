@@ -20,7 +20,7 @@ const questions = [
       name: 'Harsh Rakholiya',
       picture: '/assets/icons/avatar.svg',
     },
-    upvotes: 10200,
+    upvotes: 102356,
     views: 2000000,
     answers: [{}, {}, {}, {}, {}],
     createdAt: new Date('2024-09-01T00:00:00.000Z'),
