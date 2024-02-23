@@ -1,4 +1,5 @@
 'use client';
+import { useTheme } from '@/context/themeProvider';
 import React, { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -85,6 +86,8 @@ const Question = () => {
     form.setValue('tags', newTags);
   };
 
+  const { mode } = useTheme();
+
   return (
     <div>
       {' '}
@@ -127,6 +130,7 @@ const Question = () => {
                 </FormLabel>
                 <FormControl className="mt-3.5">
                   <Editor
+                    key={mode}
                     apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
                     onBlur={field.onBlur}
                     onEditorChange={(content) => field.onChange(content)}
@@ -134,6 +138,8 @@ const Question = () => {
                     onInit={(evt, editor) => (editorRef.current = editor)}
                     initialValue=""
                     init={{
+                      skin: mode === 'light' ? 'oxide' : 'oxide-dark',
+                      content_css: mode === 'light' ? 'default' : 'dark',
                       height: 350,
                       menubar: false,
                       plugins: [
