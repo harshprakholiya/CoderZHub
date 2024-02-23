@@ -64,7 +64,7 @@
   }
 
   .tag-bg{
-    @apply bg-transparent border-primary-main dark:border-primary-200 text-primary-800
+    @apply bg-transparent border-primary-main dark:border-primary-400 text-primary-800
     dark:text-primary-200
   }
 
