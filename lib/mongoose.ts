@@ -12,7 +12,7 @@ export const connectToDatabase = async () => {
 
     try {
         await mongoose.connect(process.env.MONGODB_URI, {
-            dbName: 'CoderZHub'
+            dbName: 'coderZHub'
         })
         isConnected = true;
         console.log('new database connection');
