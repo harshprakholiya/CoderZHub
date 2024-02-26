@@ -35,6 +35,13 @@
   .search_background {
     @apply bg-secondary-50 dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
   }
+  .input_background {
+    @apply bg-secondary-50 dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
+  }
+  .border{
+    @apply border-primary-100 border-2 dark:border-primaryDark-900
+  }
+
   .filter_background {
     @apply dark:shadow-none border-grey-200 dark:border-none dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
   }
@@ -45,6 +52,9 @@
     shadow-light-300 dark:shadow-none
   }
 
+  .text-invert-3{
+    @apply text-primaryDark-400 dark:text-primaryDark-400
+  }
   .text-invert-secondary{
     @apply text-gray-600 dark:text-gray-300
   }
@@ -58,8 +68,12 @@
   }
 
   .tag-bg{
-    @apply bg-transparent border-primary-main dark:border-primary-200 text-primary-800
+    @apply bg-transparent border-primary-main dark:border-primary-400 text-primary-800
     dark:text-primary-200
+  }
+  .question-tag-bg{
+    @apply bg-transparent !border-primary-main dark:border-primary-400 text-primary-800
+    dark:text-primary-200 hover:!border-error-400
   }
 
   /* Font styles  */

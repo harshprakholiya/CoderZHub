@@ -32,7 +32,7 @@ const NoResult = () => {
         involved! 💡
       </p>
 
-      <Link href="/ask-questions primary-gradient">
+      <Link href="/ask-question">
         <Button className="paragraph-medium primary-gradient mt-5 min-h-[46px] rounded-lg text-white hover:bg-primary-700">
           Ask a Question
         </Button>
