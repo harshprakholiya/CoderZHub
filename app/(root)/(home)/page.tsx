@@ -5,97 +5,13 @@ import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { Button } from '@/components/ui/button';
 import { HomePageFilters } from '@/constants/filters';
+import { getQuestions } from '@/lib/actions/question.action';
 import Link from 'next/link';
 
-const questions = [
-  {
-    _id: '1',
-    title: 'How to create a new project in Next.js?',
-    tags: [
-      { _id: '1', name: 'Next.js' },
-      { _id: '2', name: 'React' },
-    ],
-    author: {
-      _id: '1',
-      name: 'Harsh Rakholiya',
-      picture: '/assets/icons/avatar.svg',
-    },
-    upvotes: 102356,
-    views: 2000000,
-    answers: [{}, {}, {}, {}, {}],
-    createdAt: new Date('2024-09-01T00:00:00.000Z'),
-  },
-  {
-    _id: '2',
-    title: 'How to create a new project in Next.js?',
-    tags: [
-      { _id: '1', name: 'Next.js' },
-      { _id: '2', name: 'React' },
-    ],
-    author: {
-      _id: '3',
-      name: 'Harsh Rakholiya',
-      picture: '/assets/icons/avatar.svg',
-    },
-    upvotes: 10,
-    views: 20,
-    answers: [{}, {}, {}, {}, {}],
-    createdAt: new Date('2021-09-01T00:00:00.000Z'),
-  },
-  {
-    _id: '4',
-    title: 'How to create a new project in Next.js?',
-    tags: [
-      { _id: '1', name: 'Next.js' },
-      { _id: '2', name: 'React' },
-    ],
-    author: {
-      _id: '5',
-      name: 'Harsh Rakholiya',
-      picture: '/assets/icons/avatar.svg',
-    },
-    upvotes: 10,
-    views: 20,
-    answers: [{}, {}, {}, {}, {}],
-    createdAt: new Date('2021-09-01T00:00:00.000Z'),
-  },
-  {
-    _id: '6',
-    title: 'How to create a new project in Next.js?',
-    tags: [
-      { _id: '1', name: 'Next.js' },
-      { _id: '2', name: 'React' },
-    ],
-    author: {
-      _id: '1',
-      name: 'Harsh Rakholiya',
-      picture: '/assets/icons/avatar.svg',
-    },
-    upvotes: 10,
-    views: 20,
-    answers: [{}, {}, {}, {}, {}],
-    createdAt: new Date('2021-09-01T00:00:00.000Z'),
-  },
-  {
-    _id: '7',
-    title: 'How to create a new project in Next.js?',
-    tags: [
-      { _id: '1', name: 'Next.js' },
-      { _id: '2', name: 'React' },
-    ],
-    author: {
-      _id: '1',
-      name: 'Harsh Rakholiya',
-      picture: '/assets/icons/avatar.svg',
-    },
-    upvotes: 10,
-    views: 20,
-    answers: [{}, {}, {}, {}, {}],
-    createdAt: new Date('2021-09-01T00:00:00.000Z'),
-  },
-];
 
-export default function Home() {
+export default async function Home() {
+  const result = await getQuestions({});
+  console.log(result.question);
   return (
     <main>
       <div className="flex-between gap-4 ">
@@ -124,8 +40,8 @@ export default function Home() {
       <HomeFilters />
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => (
+        {result.question.length > 0 ? (
+          result.question.map((question) => (
             <QuestionCard
               key="question._id"
               _id={question._id}
