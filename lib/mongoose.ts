@@ -15,7 +15,6 @@ export const connectToDatabase = async () => {
             dbName: 'coderZHub'
         })
         isConnected = true;
-        console.log('new database connection');
     } catch ( error ) {
         console.log('error connecting to database', error);
     }
