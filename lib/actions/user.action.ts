@@ -54,15 +54,16 @@ export async function updateUser(params: UpdateUserParams) {
 
 export async function createUser(userData: CreateUserParams) {
     try {
-        connectToDatabase();
-        const newUser = new User(userData);
-        return newUser;
-
+      connectToDatabase();
+  
+      const newUser = await User.create(userData);
+  
+      return newUser;
     } catch (error) {
-       console.log(`Error creating user: ${error}`); 
-       throw error;
+      console.log(error);
+      throw error;
     }
-}
+  }
 
 export async function getUserById(params: any) {
     try {
