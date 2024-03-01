@@ -50,6 +50,7 @@ const QuestionCard = ({
         ))}
       </div>
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
+        console.log(author.picture);
         <Metric
           // imgUrl={author.picture}
           imgUrl='/assets/icons/avatar.svg'
