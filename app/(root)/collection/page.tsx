@@ -1,7 +1,37 @@
+import Filter from '@/components/shared/filter';
+import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
+import { Button } from '@/components/ui/button';
+import { HomePageFilters } from '@/constants/filters';
+import Link from 'next/link';
 import React from 'react';
 
 const Collection = () => {
-  return <div className="flex-center primary-text-gradient h1-bold">Collection</div>
+  return (
+    <>
+      <div className="flex-between gap-4 ">
+        <h1 className="sm:h1-bold h2-bold text-invert w-full">All Questions</h1>
+        <Link href="/ask-question" className="flex justify-end max-sm:w-full">
+          <Button className="primary-gradient max-h-[40px] px-4 !text-grey-100 sm:min-h-[46px] sm:px-4 sm:py-3">
+            Ask a Question
+          </Button>
+        </Link>
+      </div>
+      <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+        <LocalSearchBar
+          route="/"
+          imgSrc="/assets/icons/search.svg"
+          iconPosition="left"
+          placeholder="Search for questions"
+          otherClasses="flex-1"
+        />
+        <Filter
+          filters={HomePageFilters}
+          otherClasses="min-h-[56px] sm:min-w-[170px]"
+          containerClasses="hidden max-md:flex"
+        />
+      </div>
+    </>
+  );
 };
 
 export default Collection;
