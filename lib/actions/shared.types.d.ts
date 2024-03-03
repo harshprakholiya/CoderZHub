@@ -1,6 +1,23 @@
 import { IUser } from "@/database/user.model";
 import { Schema } from "mongoose";
 
+export interface GetAllUsersParams {
+  page?: number;
+  pageSize?: number;
+  filter?: string;
+  searchQuery?: string;
+}
+
+export interface GetTopInteractedTagsParams {
+  userId: string;
+  limit?: number;
+}
+
+
+export interface GetUserByIdParams {
+  userId: string;
+}
+
 export interface GetQuestionParams {
     page?: number;
     pageSize?: number;
