@@ -1,6 +1,6 @@
 import { SidebarLink } from "@/types";
 
-
+// we can add more themes here
 export const themes = [
   {
     value: "light",

@@ -35,7 +35,8 @@ export const getTimeStamps = (createdAt: Date): string => {
   } else if (minutes > 0) {
     return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
   } else {
-    return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+    // return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+    return 'Just Now';
   }
 };
 
@@ -54,5 +55,6 @@ export const formatNumber = (num: number, options?: { suffixes?: string[], separ
   const formatter = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
   const formatted = formatter.format(scaled);
 
-  return formatted.replace(/\.(\d*?)0+$/, '.$1') + separator + suffix;
+  // return formatted.replace(/\.(\d*?)0+$/, '.$1') + separator + suffix;
+  return '2';
 }

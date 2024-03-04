@@ -50,3 +50,7 @@ export interface CreateUserParams {
     clerkId: string;
   }
 
+
+  export interface GetQuestionByIdParams {
+    questionId: string;
+  }
