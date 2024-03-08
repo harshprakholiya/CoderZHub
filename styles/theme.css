@@ -76,6 +76,11 @@
     dark:text-primary-200 hover:!border-error-400
   }
 
+  /* TODO add hover effect  */
+  .btn {
+    @apply bg-slate-100 dark:bg-primaryDark-800
+  }
+
   /* Font styles  */
 
   .h1-bold {

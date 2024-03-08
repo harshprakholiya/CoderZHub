@@ -1,18 +1,27 @@
 'use client';
 
 import { AnswersSchema } from '@/lib/validation';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '../ui/form';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Editor } from '@tinymce/tinymce-react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useTheme } from '@/context/themeProvider';
+import { Button } from '../ui/button';
+import Image from 'next/image';
 
 const Answers = () => {
   const editorRef = useRef(null);
   const { mode } = useTheme();
-  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<z.infer<typeof AnswersSchema>>({
     resolver: zodResolver(AnswersSchema),
     defaultValues: {
@@ -24,6 +33,21 @@ const Answers = () => {
 
   return (
     <div>
+      <div className="mt-8 flex w-full flex-row items-center justify-between gap-5 max-sm:mt-3 sm:gap-2">
+        <h4 className="h3-semibold max-sm:paragraph-semibold  text-invert max-sm:text-center">
+          Write your answer
+        </h4>
+        <Button className="btn text-invert-secondary gap-1.5 rounded-md px-4 py-2.5" onClick={() => {}}>
+          <Image
+            src="/assets/icons/stars.svg"
+            alt="star icon"
+            width={12}
+            height={12}
+            className="object-contain"
+          />
+          <p className="max-sm:hidden">Enhance your answer</p>
+        </Button>
+      </div>
       <Form {...form}>
         <form
           className="mt-6 flex w-full flex-col gap-10"
@@ -79,6 +103,15 @@ const Answers = () => {
               </FormItem>
             )}
           />
+          <div className="flex justify-end">
+            <Button
+              type="submit"
+              className="primary-gradient paragraph-regular w-fit text-white"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
