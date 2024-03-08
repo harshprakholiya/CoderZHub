@@ -7,7 +7,6 @@ import { getAllUsers } from '@/lib/actions/user.action';
 import Image from 'next/image';
 import Link from 'next/link';
 const Community = async () => {
-  
   const result = await getAllUsers({});
 
   return (
@@ -30,11 +29,9 @@ const Community = async () => {
         />
       </div>
 
-      <section className="mt-12 flex flex-wrap gap-4">
+      <section className="flex-center mt-12 flex-wrap gap-4">
         {result.users.length > 0 ? (
-          result.users.map((user) => (
-            <UserCard key={user._id} user={user} /> 
-          ))
+          result.users.map((user) => <UserCard key={user._id} user={user} />)
         ) : (
           <div className=" flex-center my-10 w-full flex-col">
             <Image
