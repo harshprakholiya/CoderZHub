@@ -10,7 +10,6 @@ import Link from 'next/link';
 
 export default async function Home() {
   const result = await getQuestions({});
-  console.log(result.question);
   return (
     <main>
       <div className="flex-between gap-4 ">

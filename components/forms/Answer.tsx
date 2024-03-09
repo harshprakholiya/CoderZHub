@@ -16,8 +16,17 @@ import { useRef, useState } from 'react';
 import { useTheme } from '@/context/themeProvider';
 import { Button } from '../ui/button';
 import Image from 'next/image';
+import { createAnswer } from '@/lib/actions/answer.action';
+import { usePathname } from 'next/navigation';
 
-const Answers = () => {
+interface AnswerProps {
+  question: string;
+  questionId: string;
+  authorId: string;
+}
+
+const Answers = ({ question, questionId, authorId }: AnswerProps) => {
+  const pathName = usePathname();
   const editorRef = useRef(null);
   const { mode } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,7 +38,31 @@ const Answers = () => {
     },
   });
 
-  const handleCreateAnswer = (data) => {};
+  const handleCreateAnswer = async (values: z.infer<typeof AnswersSchema>) => {
+    setIsSubmitting(true);
+
+    try {
+      await createAnswer({
+        content: values.answer,
+        author: JSON.parse(authorId),
+        question: JSON.parse(questionId),
+        path: pathName,
+      });
+
+      form.reset();
+
+      if (editorRef.current) {
+        
+        const editor = editorRef.current as any;
+        editor.setContent('');
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div>
@@ -37,7 +70,12 @@ const Answers = () => {
         <h4 className="h3-semibold max-sm:paragraph-semibold  text-invert max-sm:text-center">
           Write your answer
         </h4>
-        <Button className="btn text-invert-secondary gap-1.5 rounded-md px-4 py-2.5" onClick={() => {}}>
+
+        {/*  TODO: Add hover effect to the button */}
+        <Button
+          className="btn text-invert-secondary gap-1.5 rounded-md px-4 py-2.5"
+          onClick={() => {}}
+        >
           <Image
             src="/assets/icons/stars.svg"
             alt="star icon"

@@ -3,11 +3,20 @@ import Metric from '@/components/shared/Metric';
 import ParseHtml from '@/components/shared/ParseHtml';
 import RenderTags from '@/components/shared/RenderTags';
 import { getQuestionById } from '@/lib/actions/question.action';
+import { getUserById } from '@/lib/actions/user.action';
 import { formatNumber, getTimeStamps } from '@/lib/utils';
+import { auth } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Page = async ({ params, searchParams }: any) => {
+  const { userId: clerkId } = auth();
+  let mongoUser;
+
+  if (clerkId) {
+    mongoUser = await getUserById({ userId: clerkId });
+  }
+
   const result = await getQuestionById({ questionId: params.id });
   return (
     <>
@@ -72,7 +81,11 @@ const Page = async ({ params, searchParams }: any) => {
         ))}
       </div>
 
-      <Answer />
+      <Answer
+        question={result.content}
+        questionId={JSON.stringify(result._id)}
+        authorId={JSON.stringify(mongoUser._id)}
+      />
     </>
   );
 };

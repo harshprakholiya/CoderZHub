@@ -8,6 +8,20 @@ export interface GetAllUsersParams {
   searchQuery?: string;
 }
 
+export interface CreateAnswerParams {
+  content: string;
+  author: string; 
+  question: string; 
+  path: string;
+}
+
+export interface GetAnswersParams {
+  questionId: string;
+  sortBy?: string;
+  page?: number;
+  pageSize?: number;
+}
+
 export interface GetTopInteractedTagsParams {
   userId: string;
   limit?: number;

@@ -4,7 +4,6 @@ import RightSidebar from '@/components/shared/rightsidebar/RightSidebar';
 import React from 'react';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  console.log(children);
   return (
     <main className="background-default_bg_primary50 relative">
       <Navbar />

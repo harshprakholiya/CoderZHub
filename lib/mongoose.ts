@@ -6,7 +6,7 @@ export const connectToDatabase = async () => {
     if(!process.env.MONGODB_URI) return console.log('MONGODB_URI is not defined');
 
     if (isConnected) {
-        return console.log('using existing database connection');
+        return console.log('already connected to database');
         
     }
 
