@@ -51,6 +51,9 @@
     border-r-divider 
     shadow-light-300 dark:shadow-none
   }
+  .text-invert-2{
+    @apply text-grey-800 dark:text-grey-100
+  }
 
   .text-invert-3{
     @apply text-primaryDark-400 dark:text-primaryDark-400
