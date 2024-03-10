@@ -12,7 +12,7 @@ interface questionCardProps {
     name: string;
     picture: string;
   };
-  upvotes: number;
+  upvotes: [];
   views: number;
   answers: Array<object>;
   createdAt: Date;
@@ -28,6 +28,8 @@ const QuestionCard = ({
   answers,
   createdAt,
 }: questionCardProps) => {
+  console.log(upvotes.length);
+
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
       <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row">
@@ -60,20 +62,20 @@ const QuestionCard = ({
           isAuthor
           value={author.name}
         />
-        
+
         <Metric
           imgUrl="/assets/icons/like.svg"
           alt="upvotes"
           title="Votes"
           textStyles="small-medium card-text-invert-secondary"
-          value={formatNumber(upvotes)}
+          value={upvotes.length === 0 ? '0' : formatNumber(upvotes.length)}
         />
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="message"
           title="Answers"
           textStyles="small-medium card-text-invert-secondary"
-          value={formatNumber(answers.length)}
+          value={answers.length === 0 ? '0' : formatNumber(answers.length)}
           href={`/question/${_id}`}
         />
         <Metric
@@ -81,7 +83,7 @@ const QuestionCard = ({
           alt="eye"
           title="Views"
           textStyles="small-medium card-text-invert-secondary"
-          value={formatNumber(views)}
+          value={views === 0 ? '0' : formatNumber(views)}
         />
       </div>
     </div>

@@ -3,6 +3,7 @@ import AllAnswers from '@/components/shared/AllAnswers';
 import Metric from '@/components/shared/Metric';
 import ParseHtml from '@/components/shared/ParseHtml';
 import RenderTags from '@/components/shared/RenderTags';
+import Voting from '@/components/shared/Voting';
 import { getQuestionById } from '@/lib/actions/question.action';
 import { getUserById } from '@/lib/actions/user.action';
 import { formatNumber, getTimeStamps } from '@/lib/utils';
@@ -40,7 +41,7 @@ const Page = async ({ params, searchParams }: any) => {
               {result.author.name}
             </p>
           </Link>
-          <div className="flex justify-end">Voting</div>
+          <div className="flex justify-end"><Voting /></div>
         </div>
         <h2 className="h2-semibold text-invert mt-3.5 w-full text-left ">
           {result.title}
@@ -60,14 +61,14 @@ const Page = async ({ params, searchParams }: any) => {
           alt="message"
           title="Answers"
           textStyles="small-medium card-text-invert-secondary"
-          value={formatNumber(result.answers.length)}
+          value={result.answer.length === 0 ? '0' :  formatNumber(result.answers.length)}
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="eye"
           title="Views"
           textStyles="small-medium card-text-invert-secondary"
-          value={formatNumber(result.views)}
+          value={result.answer.length === 0 ? '0' : formatNumber(result.views)}
         />
       </div>
 
