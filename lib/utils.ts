@@ -55,6 +55,5 @@ export const formatNumber = (num: number, options?: { suffixes?: string[], separ
   const formatter = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
   const formatted = formatter.format(scaled);
 
-  // return formatted.replace(/\.(\d*?)0+$/, '.$1') + separator + suffix;
-  return '2';
+  return formatted.replace(/\.(\d*?)0+$/, '.$1') + separator + suffix;
 }
