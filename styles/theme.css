@@ -45,6 +45,13 @@
   .filter_background {
     @apply dark:shadow-none border-grey-200 dark:border-none dark:bg-gradient-to-br from-primaryDark-800 to-primaryDark-700;
   }
+  .card-element{
+    @apply dark:shadow-none border-primaryDark-500 dark:bg-gradient-to-br from-grey-800 to-grey-800 
+  }
+
+  .card_background {
+    @apply bg-white dark:bg-primaryDark-700;
+  }
   .navbar_lg_background{
     @apply dark:bg-background-paper
     bg-[#Fdfdfd]
@@ -52,6 +59,10 @@
     shadow-light-300 dark:shadow-none
   }
 
+
+  .text-invert-subtitle{
+    @apply text-primaryDark-700 dark:text-primaryDark-200
+  }
   .text-invert-3{
     @apply text-primaryDark-400 dark:text-primaryDark-400
   }

@@ -22,9 +22,7 @@ export const metadata: Metadata = {
   title: 'CoderZHub',
   description:
     'CoderZHub is a community of developers for asking and answering programming questions. We are a community of like-minded people who want to learn, create, and grow together.',
-  icons: [
-    
-  ],
+  icons: [],
 };
 
 export default function RootLayout({
@@ -42,6 +40,14 @@ export default function RootLayout({
             elements: {
               formButtonPrimary: 'primary-gradient',
               footerActionLink: 'text-primary-gradient hover:text-primary-600',
+              // card: 'card_background',
+              // headerTitle: 'text-invert',
+              // headerSubtitle: 'text-invert-subtitle',
+              // socialButtonsBlockButton:
+              //   'card_background border-gray-700 hover:card-element',
+              // socialButtonsBlockButtonArrow: '',
+              // socialButtonsBlockButtonText: 'text-invert-subtitle',
+              // dividerLine: 'border',
             },
           }}
         >
