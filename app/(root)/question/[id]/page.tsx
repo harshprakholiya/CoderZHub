@@ -22,6 +22,8 @@ const Page = async ({ params, searchParams }: any) => {
   const result = await getQuestionById({ questionId: params.id });
 
   console.log(`Question details page ${JSON.stringify(result._id)}`);
+
+  console.log(result)
   return (
     <>
       <div className="flex-start w-full flex-col">
@@ -61,14 +63,14 @@ const Page = async ({ params, searchParams }: any) => {
           alt="message"
           title="Answers"
           textStyles="small-medium card-text-invert-secondary"
-          value={result.answer.length === 0 ? '0' :  formatNumber(result.answers.length)}
+          value={formatNumber(result.answers.length)}
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="eye"
           title="Views"
           textStyles="small-medium card-text-invert-secondary"
-          value={result.answer.length === 0 ? '0' : formatNumber(result.views)}
+          value={formatNumber(result.views)}
         />
       </div>
 

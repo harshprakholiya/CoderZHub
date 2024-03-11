@@ -41,7 +41,9 @@ export const getTimeStamps = (createdAt: Date): string => {
 };
 
 export const formatNumber = (num: number, options?: { suffixes?: string[], separator?: string }): string => {
-  if (isNaN(num)) return '0'; // Return '0' if num is NaN
+  if (isNaN(num)) return '0'; // Return '0' if num is Na
+
+  if(num <= 0 ) return '0';
 
   const defaultSuffixes = ['', 'K', 'M', 'B', 'T', 'Q']; 
   
