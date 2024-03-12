@@ -68,3 +68,11 @@ export interface CreateUserParams {
   export interface GetQuestionByIdParams {
     questionId: string;
   }
+
+
+  export interface GetAllTagsParams {
+    page?: number;
+    pageSize?: number;
+    filter?: string;
+    searchQuery?: string;
+  }

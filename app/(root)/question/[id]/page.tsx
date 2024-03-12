@@ -23,7 +23,7 @@ const Page = async ({ params, searchParams }: any) => {
 
   console.log(`Question details page ${JSON.stringify(result._id)}`);
 
-  console.log(result)
+  console.log(result);
   return (
     <>
       <div className="flex-start w-full flex-col">
@@ -43,7 +43,18 @@ const Page = async ({ params, searchParams }: any) => {
               {result.author.name}
             </p>
           </Link>
-          <div className="flex justify-end"><Voting /></div>
+          <div className="flex justify-end">
+            <Voting
+              type="Question"
+              itemId={JSON.stringify(result._id)}
+              userId={JSON.stringify(mongoUser._id)}
+              upvotes={result.upvotes.length}
+              hasUpvoted={result.upvotes.includes(mongoUser._id)}
+              downvotes={result.downvotes.length}
+              hasDownvoted={result.downvotes.includes(mongoUser._id)}
+              hasSaved={mongoUser?.saved.includes(result._id)}
+            />
+          </div>
         </div>
         <h2 className="h2-semibold text-invert mt-3.5 w-full text-left ">
           {result.title}
