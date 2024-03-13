@@ -5,6 +5,7 @@ import {
   downvoteQuestion,
   upvoteQuestion,
 } from '@/lib/actions/question.action';
+import { toggleSaveQuestion } from '@/lib/actions/user.action';
 import { formatNumber } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -39,6 +40,7 @@ const Voting = ({
   const [downvoted, setDownvoted] = useState(hasDownvoted);
   const [upvoteCount, setUpvoteCount] = useState(upvotes);
   const [downvoteCount, setDownvoteCount] = useState(downvotes);
+  const [saved, setSaved] = useState(hasSaved)
 
   console.log(`has upvoted : ${hasUpvoted}`);
   console.log(`has downvoted : ${hasDownvoted}`);
@@ -115,7 +117,14 @@ const Voting = ({
   };
 
   //  TODO: complete server action for this function
-  const handleSave = async () => {};
+  const handleSave = async () => {
+    setSaved(!saved)
+    await toggleSaveQuestion({
+      userId: JSON.parse(userId),
+      questionId: JSON.parse(itemId),
+      path: pathname,
+    })
+  };
 
   return (
     <div className="flex gap-5">
@@ -158,7 +167,7 @@ const Voting = ({
 
       { type === 'Question' && (
         <Image
-          src={`${hasSaved ? '/assets/icons/star-filed.svg' : '/assets/icons/star-blue.svg'}`}
+          src={`${saved ? '/assets/icons/star-filled.svg' : '/assets/icons/star-blue.svg'}`}
           alt="downvote"
           width={18}
           height={18}

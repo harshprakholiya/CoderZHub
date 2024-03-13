@@ -32,17 +32,18 @@ export interface GetUserByIdParams {
 }
 
 export interface GetQuestionParams {
-    page?: number;
-    pageSize?: number;
-    searchQuery?: string;
-    filter?: string;
+  page?: number;
+  pageSize?: number;
+  searchQuery?: string;
+  filter?: string;
 }
+
 export interface CreateQuestionParams {
-    title : string;
-    content: string
-    tags: string[];
-    author: Schema.Type.ObjectId | IUser
-    path: string
+  title: string;
+  content: string;
+  tags: string[];
+  author: Schema.Type.ObjectId | IUser;
+  path: string;
 }
 
 export interface AnswerVoteParams {
@@ -54,45 +55,44 @@ export interface AnswerVoteParams {
 }
 
 export interface CreateUserParams {
-    clerkId: string;
-    name: string;
-    username: string;
-    email: string;
-    picture: string;
-  }
+  clerkId: string;
+  name: string;
+  username: string;
+  email: string;
+  picture: string;
+}
 
+export interface UpdateUserParams {
+  clerkId: string;
+  updateData: Partial<IUser>;
+  path: string;
+}
 
+export interface DeleteUserParams {
+  clerkId: string;
+}
 
+export interface GetQuestionByIdParams {
+  questionId: string;
+}
 
+export interface QuestionVoteParams {
+  questionId: string;
+  userId: string;
+  hasUpvoted: boolean;
+  hasDownvoted: boolean; 
+  path: string;
+}
 
+export interface GetAllTagsParams {
+  page?: number;
+  pageSize?: number;
+  filter?: string;
+  searchQuery?: string;
+}
 
-  export interface UpdateUserParams {
-    clerkId: string;
-    updateData: Partial<IUser>;
-    path: string;
-  }
-
-  export interface DeleteUserParams {
-    clerkId: string;
-  }
-
-
-  export interface GetQuestionByIdParams {
-    questionId: string;
-  }
-  
-  export interface QuestionVoteParams {
-    questionId: string;
-    userId: string;
-    hasUpvoted: boolean;
-    hasDownvoted: boolean; 
-    path: string;
-  }
-
-
-  export interface GetAllTagsParams {
-    page?: number;
-    pageSize?: number;
-    filter?: string;
-    searchQuery?: string;
-  }
+export interface toggleSaveQuestionParams {
+  userId: string;
+  questionId: string;
+  path: string;
+}
