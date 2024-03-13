@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use server"
 import { FilterQuery } from "mongoose";
 import User from "@/database/user.model";
@@ -5,7 +6,6 @@ import { connectToDatabase } from "../mongoose"
 import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetSavedQuestionsParams, GetUserByIdParams, UpdateUserParams, toggleSaveQuestionParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
-import { connect } from "http2";
 
 export async function getUserById(params: GetUserByIdParams) {
   try {
@@ -136,6 +136,7 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams){
 
   try {
     connectToDatabase();
+    
     const { clerkId, page = 1, pageSize = 20, filter, searchQuery } = params;
 
     const query: FilterQuery<typeof Question> = searchQuery
