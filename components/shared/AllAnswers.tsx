@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getTimeStamps } from '@/lib/utils';
 import ParseHtml from './ParseHtml';
+import Voting from './Voting';
 
 interface AllAnswerProps {
   questionId: string;
@@ -43,8 +44,8 @@ const AllAnswers = async ({
           result.answers &&
           result.answers.map((answer) => (
             <div key={answer.id} className="py-10">
-              <div className="flex-between">
-                <div>
+              <div className="w-full">
+                <div className="flex-between mb-10">
                   <Link
                     href={`/profile/${answer.author.clerkId}`}
                     className="flex flex-1 items-start gap-1 sm:items-center"
@@ -67,12 +68,19 @@ const AllAnswers = async ({
                     </div>
                   </Link>
                   <div className="flex justify-end">
-                    {/* TODO: Add Voting  */}
-                    Voting
+                    <Voting
+                      type="Answer"
+                      itemId={JSON.stringify(answer._id)}
+                      userId={JSON.stringify(userId)}
+                      upvotes={answer.upvotes.length}
+                      hasUpvoted={answer.upvotes.includes(userId)}
+                      downvotes={answer.downvotes.length}
+                      hasDownvoted={answer.downvotes.includes(userId)}
+                    />
                   </div>
                 </div>
               </div>
-                <ParseHtml content={answer.content}/>
+              <ParseHtml content={answer.content} />
             </div>
           ))}
       </div>

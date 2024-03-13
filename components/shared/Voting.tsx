@@ -1,5 +1,6 @@
 'use client';
 
+import { downvoteAnswer, upvoteAnswer } from '@/lib/actions/answer.action';
 import {
   downvoteQuestion,
   upvoteQuestion,
@@ -38,6 +39,8 @@ const Voting = ({
   const pathname = usePathname();
   // const router = useRouter();
 
+
+  // TODO: add Animation and immediate update of the voting image 
   const handleVote = async (action: string) => {
     if (!userId) {
       return;
@@ -52,13 +55,13 @@ const Voting = ({
           path: pathname,
         });
       } else if (type === 'Answer') {
-        // await upvoteAnswer({
-        //   questionId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasDownvoted,
-        //   hasUpvoted,
-        //   path: pathname,
-        // });
+        await upvoteAnswer({
+          answerId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasDownvoted,
+          hasUpvoted,
+          path: pathname,
+        });
       }
       // TODO: show a tost message
       return;
@@ -74,13 +77,13 @@ const Voting = ({
           path: pathname,
         });
       } else if (type === 'Answer') {
-        // await downvoteAnswer({
-        //   questionId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasDownvoted,
-        //   hasUpvoted,
-        //   path: pathname,
-        // });
+        await downvoteAnswer({
+          answerId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasDownvoted,
+          hasUpvoted,
+          path: pathname,
+        });
       }
     }
   };
@@ -126,14 +129,18 @@ const Voting = ({
           </div>
         </div>
       </div>
-      <Image
-        src={`${hasSaved ? '/assets/icons/star-filed.svg' : '/assets/icons/star-blue.svg'}`}
-        alt="downvote"
-        width={18}
-        height={18}
-        className="cursor-pointer"
-        onClick={() => handleSave()}
-      />
+
+      { type === 'Question' && (
+        <Image
+          src={`${hasSaved ? '/assets/icons/star-filed.svg' : '/assets/icons/star-blue.svg'}`}
+          alt="downvote"
+          width={18}
+          height={18}
+          className="cursor-pointer"
+          onClick={() => handleSave()}
+        />
+      )
+      }
     </div>
   );
 };

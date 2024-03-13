@@ -27,7 +27,6 @@ export interface GetTopInteractedTagsParams {
   limit?: number;
 }
 
-
 export interface GetUserByIdParams {
   userId: string;
 }
@@ -46,6 +45,14 @@ export interface CreateQuestionParams {
     path: string
 }
 
+export interface AnswerVoteParams {
+  answerId: string;
+  userId: string;
+  hasUpvoted: boolean;
+  hasDownvoted: boolean;
+  path: string;
+}
+
 export interface CreateUserParams {
     clerkId: string;
     name: string;
@@ -53,6 +60,11 @@ export interface CreateUserParams {
     email: string;
     picture: string;
   }
+
+
+
+
+
 
   export interface UpdateUserParams {
     clerkId: string;
