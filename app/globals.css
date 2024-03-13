@@ -36,6 +36,10 @@ body {
     @apply max-w-full prose dark:prose-p:text-light-700 dark:prose-ol:text-light-700 dark:prose-ul:text-light-500 dark:prose-strong:text-white dark:prose-headings:text-white prose-headings:text-dark-400 prose-h1:text-dark-300 prose-h2:text-dark-300 prose-p:text-dark-500 prose-ul:text-dark-500 prose-ol:text-dark-500;
   }
 
+  .loading-bar{
+    @apply bg-primary-600 fixed top-0 left-0 w-0 h-[2px] z-50 duration-100
+  }
+
   .primary-gradient {
     background: linear-gradient(129deg, #3399FF 0%, #007FFF 100%);
   }

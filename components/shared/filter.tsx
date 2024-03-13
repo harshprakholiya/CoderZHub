@@ -34,7 +34,7 @@ const Filter = ({ filters, otherClasses, containerClasses }: filterProps) => {
           <SelectGroup className="background-bg_white_dark-primary800">
             {filters.map((filter) => (
               <SelectItem
-                key="filter.value"
+                key={filter.value}
                 value={filter.value}
                 className="cursor-pointer gap-1 p-2 hover:outline-none"
               >
