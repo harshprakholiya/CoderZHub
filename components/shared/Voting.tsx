@@ -7,6 +7,8 @@ import {
 } from '@/lib/actions/question.action';
 import { formatNumber } from '@/lib/utils';
 import Image from 'next/image';
+
+// eslint-disable-next-line no-unused-vars
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
