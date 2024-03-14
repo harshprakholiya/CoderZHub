@@ -1,6 +1,7 @@
 'use client';
 
 import { downvoteAnswer, upvoteAnswer } from '@/lib/actions/answer.action';
+import { viewQuestion } from '@/lib/actions/interaction.action';
 import {
   downvoteQuestion,
   upvoteQuestion,
@@ -8,10 +9,8 @@ import {
 import { toggleSaveQuestion } from '@/lib/actions/user.action';
 import { formatNumber } from '@/lib/utils';
 import Image from 'next/image';
-
-// eslint-disable-next-line no-unused-vars
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Params {
   type: string;
@@ -34,13 +33,11 @@ const Voting = ({
   hasDownvoted,
   hasSaved,
 }: Params) => {
-
-  
   const [upvoted, setUpvoted] = useState(hasUpvoted);
   const [downvoted, setDownvoted] = useState(hasDownvoted);
   const [upvoteCount, setUpvoteCount] = useState(upvotes);
   const [downvoteCount, setDownvoteCount] = useState(downvotes);
-  const [saved, setSaved] = useState(hasSaved)
+  const [saved, setSaved] = useState(hasSaved);
 
   console.log(`has upvoted : ${hasUpvoted}`);
   console.log(`has downvoted : ${hasDownvoted}`);
@@ -49,19 +46,15 @@ const Voting = ({
   console.log(`upvote counts : ${upvoteCount}`);
   console.log(`downvote counts : ${downvoteCount}`);
   const pathname = usePathname();
-  // const router = useRouter();
+  const router = useRouter();
 
-
-
-
-  // TODO: add Animation and immediate update of the voting image 
+  // TODO: add Animation and immediate update of the voting image
   const handleVote = async (action: string) => {
-
     if (!userId) {
       return;
     }
     if (action === 'upvote') {
-      if(hasDownvoted){
+      if (hasDownvoted) {
         setDownvoted(false);
         setDownvoteCount(downvoteCount - 1);
       }
@@ -89,7 +82,7 @@ const Voting = ({
     }
 
     if (action === 'downvote') {
-      if(hasUpvoted){
+      if (hasUpvoted) {
         setUpvoted(false);
         setUpvoteCount(upvoteCount - 1);
       }
@@ -118,13 +111,22 @@ const Voting = ({
 
   //  TODO: complete server action for this function
   const handleSave = async () => {
-    setSaved(!saved)
+    setSaved(!saved);
     await toggleSaveQuestion({
       userId: JSON.parse(userId),
       questionId: JSON.parse(itemId),
       path: pathname,
-    })
+    });
   };
+
+  useEffect(() => {
+    viewQuestion({
+      questionId: JSON.parse(itemId),
+      userId: userId ? JSON.parse(userId) : undefined,
+    });
+
+    alert('viewed');
+  }, [itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">
@@ -165,7 +167,7 @@ const Voting = ({
         </div>
       </div>
 
-      { type === 'Question' && (
+      {type === 'Question' && (
         <Image
           src={`${saved ? '/assets/icons/star-filled.svg' : '/assets/icons/star-blue.svg'}`}
           alt="downvote"
@@ -174,8 +176,7 @@ const Voting = ({
           className="cursor-pointer"
           onClick={() => handleSave()}
         />
-      )
-      }
+      )}
     </div>
   );
 };
