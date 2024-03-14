@@ -9,9 +9,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <main className="background-default_bg_primary50 relative">
       <NextTopLoader
         color="#007FFF"
-        height={800}
+        height={2}
         showSpinner={false}
-        easing="ease-in-out"
+        easing="ease-in"
       />
       <Navbar />
       <div className="flex">
