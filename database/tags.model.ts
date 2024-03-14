@@ -1,6 +1,6 @@
 import { Schema, models, model, Document } from 'mongoose';
 
-export interface Itag extends Document {
+export interface ITag extends Document {
     name: string;
     description: string;
     questions: Schema.Types.ObjectId[];
