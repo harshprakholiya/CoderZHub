@@ -2,10 +2,12 @@ import LeftSidebar from '@/components/shared/leftsidebar/LeftSidebar';
 import Navbar from '@/components/shared/navbar/Navbar';
 import RightSidebar from '@/components/shared/rightsidebar/RightSidebar';
 import React from 'react';
+import NextTopLoader from 'nextjs-toploader';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-default_bg_primary50 relative">
+      <NextTopLoader color="#007FFF" height={2} showSpinner={false} easing="ease-in-out" />
       <Navbar />
       <div className="flex">
         <LeftSidebar />
