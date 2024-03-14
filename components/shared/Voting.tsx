@@ -124,9 +124,7 @@ const Voting = ({
       questionId: JSON.parse(itemId),
       userId: userId ? JSON.parse(userId) : undefined,
     });
-
-    alert('viewed');
-  }, [itemId, userId, pathname, router]);
+   }, [itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">
