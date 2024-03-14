@@ -7,7 +7,12 @@ import NextTopLoader from 'nextjs-toploader';
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-default_bg_primary50 relative">
-      <NextTopLoader color="#007FFF" height={2} showSpinner={false} easing="ease-in-out" />
+      <NextTopLoader
+        color="#007FFF"
+        height={800}
+        showSpinner={false}
+        easing="ease-in-out"
+      />
       <Navbar />
       <div className="flex">
         <LeftSidebar />
@@ -16,7 +21,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </section>
         <RightSidebar />
       </div>
-
       {/* Notifications */}
     </main>
   );
