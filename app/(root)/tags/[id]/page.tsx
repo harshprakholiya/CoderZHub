@@ -15,7 +15,7 @@ const Page = async ({ params, searchParams }: any) => {
 
   return (
     <main>
-      <h1 className="sm:h1-bold h2-bold text-invert w-full up">
+      <h1 className="sm:h1-bold h2-bold text-invert w-full">
         {result.tagTitle}
       </h1>
 
@@ -31,7 +31,7 @@ const Page = async ({ params, searchParams }: any) => {
 
       <div className="mt-10 flex w-full flex-col gap-6">
         {result.questions.length > 0 ? (
-          result.questions.map((question: IQuestion) => (
+          result.questions.map((question: any) => (
             <QuestionCard
               key={question._id}
               _id={question._id}
