@@ -1,6 +1,6 @@
 import QuestionCard from '@/components/cards/QuestionCard';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
-import { IQuestion } from '@/database/question.model';
+
 import { getQuestionByTagId } from '@/lib/actions/tag.actions';
 import Image from 'next/image';
 
