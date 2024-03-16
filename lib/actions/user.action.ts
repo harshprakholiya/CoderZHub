@@ -179,13 +179,13 @@ export async function getUserInfo(params: GetUserInfoParams){
 
     if(!user) throw Error('user not found');
 
-    const totalQuestion = await Question.countDocuments({author: user._id})
-    const totalAnswer = await Answer.countDocuments({author: user._id})
+    const totalQuestions = await Question.countDocuments({author: user._id})
+    const totalAnswers = await Answer.countDocuments({author: user._id})
 
     return {
       user,
-      totalAnswer,
-      totalQuestion
+      totalAnswers,
+      totalQuestions
     }
 
      

@@ -1,4 +1,5 @@
 import ProfileLink from '@/components/shared/ProfileLink';
+import States from '@/components/shared/States';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getUserInfo } from '@/lib/actions/user.action';
@@ -22,7 +23,8 @@ const Profile = async ({ params, searchParams }: any) => {
             alt={userInfo?.user.username}
             width={140}
             height={140}
-            className="rounded-full object-cover"
+            className="primary-gradient rounded-full border-4 border-transparent object-cover 
+            "
           />
 
           <div className="mt-3">
@@ -73,15 +75,18 @@ const Profile = async ({ params, searchParams }: any) => {
           </SignedIn>
         </div>
       </div>
-      Stats
+      <States
+        totalQuestions={userInfo.totalQuestions}
+        totalAnswers={userInfo.totalAnswers}
+      />
       <div className="mt-10 flex gap-10">
         <Tabs defaultValue="top-posts" className="flex-1">
           <TabsList className="min-h-[42px] p-1">
             <TabsTrigger value="top-posts" className="tab">
-              Top-Posts
+              QuestionsTab
             </TabsTrigger>
             <TabsTrigger value="answers" className="tab">
-              Answers
+              AnswerTab
             </TabsTrigger>
           </TabsList>
           <TabsContent value="top-posts">POSTS</TabsContent>
