@@ -61,3 +61,10 @@ export const formatNumber = (num: number, options?: { suffixes?: string[], separ
 
   return formatted.replace(/\.(\d*?)0+$/, '.$1') + separator + suffix;
 }
+
+export const getJoinedMonthYear = (date: Date): string => {
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+  return `Joined ${month} ${year}`;
+};
+

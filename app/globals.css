@@ -52,8 +52,11 @@ body {
     );
   }
 
+
+  /* TODO: modify colors of tab  */
+     
   .tab {
-    @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-500 dark:data-[state=active]:bg-dark-300 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-500 !important;
+    @apply min-h-full dark:bg-primaryDark-800 bg-grey-100 text-grey-900 dark:text-secondary-600 dark:data-[state=active]:bg-primaryDark-700 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-500 dark:data-[state=active]:text-primary-400 !important;
   }
 }
 

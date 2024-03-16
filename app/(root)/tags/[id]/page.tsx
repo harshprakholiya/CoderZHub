@@ -64,11 +64,12 @@ const Page = async ({ params, searchParams }: any) => {
               className="h2-bold
           text-invert mt-8"
             >
-              There’s no saved Question to show
+              There&apos;s no Tags to show
             </h2>
             <p className="body-regular text-invert-secondary mt-3.5 max-w-md text-center">
-              Looks like you don&apos;t have any saved questions right now. Save
-              questions to revisit them whenever you want!
+              Be the first to break the silence! 🚀 Ask a Question and kickstart
+              the discussion. our query could be the next big thing others learn
+              from. Get involved! 💡
             </p>
           </div>
         )}

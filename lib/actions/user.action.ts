@@ -3,9 +3,10 @@
 import { FilterQuery } from "mongoose";
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
-import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetSavedQuestionsParams, GetUserByIdParams, UpdateUserParams, toggleSaveQuestionParams } from "./shared.types";
+import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetSavedQuestionsParams, GetUserByIdParams, GetUserInfoParams, UpdateUserParams, toggleSaveQuestionParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
+import Answer from "@/database/answer.model";
 
 export async function getUserById(params: GetUserByIdParams) {
   try {
@@ -165,5 +166,32 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams){
   } catch (error) {
     console.log(error);
     throw error;
+  }
+}
+
+export async function getUserInfo(params: GetUserInfoParams){
+  try {
+    connectToDatabase();
+
+    const { userId } = params;
+
+    const user = await User.findOne({clerkId: userId})
+
+    if(!user) throw Error('user not found');
+
+    const totalQuestion = await Question.countDocuments({author: user._id})
+    const totalAnswer = await Answer.countDocuments({author: user._id})
+
+    return {
+      user,
+      totalAnswer,
+      totalQuestion
+    }
+
+     
+
+  } catch (error) {
+    console.log(error)
+    throw error
   }
 }
