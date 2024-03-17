@@ -3,7 +3,7 @@
 code[class*="language-"],
  
 pre[class*="language-"] {
-  color: #bbbaf9; /* Text color */
+  color: #ffffff;  /* Text color */
   background: rgb(18, 23, 27); /* Background color */
   text-shadow: none;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
