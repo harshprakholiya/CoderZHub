@@ -1,10 +1,8 @@
 import NoResult from '@/components/shared/NoResult';
 import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
-import { Button } from '@/components/ui/button';
 import { TagFilters } from '@/constants/filters';
 import { getAllTags } from '@/lib/actions/tag.actions';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const Tags = async () => {
