@@ -11,11 +11,6 @@ interface Props {
 const AnswerTab = async ({ searchParams, userId, clerkId }: Props) => {
   const result = await getUserAnswers({ userId, page: 1 });
 
-  console.log(result);
-  console.log('clerkId', clerkId);
-  console.log('userId', userId);
-  console.log('question.answer', result.questions);
-
 
   // TODO: Add btnLink url (unanswered question) 
 
