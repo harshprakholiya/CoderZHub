@@ -1,3 +1,4 @@
+import NoResult from '@/components/shared/NoResult';
 import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { Button } from '@/components/ui/button';
@@ -51,38 +52,13 @@ const Tags = async () => {
             </Link>
           ))
         ) : (
-          <div className=" flex-center my-10 w-full flex-col">
-            <Image
-              src="/assets/images/no-questions.svg"
-              alt="no Question"
-              width={270}
-              height={200}
-              className="hidden dark:flex"
-            />
-            <Image
-              src="/assets/images/light-no-questions.svg"
-              alt="no Question"
-              width={270}
-              height={200}
-              className="dark:hidden"
-            />
-            <h2
-              className="h2-bold
-      text-invert mt-8"
-            >
-              There’s no Tags to show
-            </h2>
-            <p className="body-regular text-invert-secondary mt-3.5 max-w-md text-center">
-              There are no Tags yet. Be the first to create a Tag by asking
-              question
-            </p>
-
-            <Link href="/ask-question">
-              <Button className="paragraph-medium primary-gradient mt-5 min-h-[46px] rounded-lg text-white hover:bg-primary-700">
-                Ask QUestion
-              </Button>
-            </Link>
-          </div>
+          <NoResult 
+            title='There’s no Tags to show'
+            description='Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. Your query could be the next big thing others learn from. Get involved! 💡'
+            hasButton={true}
+            btnText='Ask a Question'
+            btnLink='/ask-question'
+          />
         )}
       </section>
     </>

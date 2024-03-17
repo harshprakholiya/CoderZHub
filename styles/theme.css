@@ -49,7 +49,7 @@
     @apply dark:shadow-none border-primaryDark-500 dark:bg-gradient-to-br from-grey-800 to-grey-800 
   }
   .profile-card{
-    @apply bg-white border-grey-50 border dark:bg-[#0F1117] dark:border-[#151821] !important
+    @apply bg-grey-50 border-grey-50 border dark:bg-[#0F1117] dark:border-[#151821] shadow-md !important
   }
 
   .card_background {

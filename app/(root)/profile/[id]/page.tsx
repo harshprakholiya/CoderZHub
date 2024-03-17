@@ -1,4 +1,6 @@
+import AnswerTab from '@/components/shared/AnswerTab';
 import ProfileLink from '@/components/shared/ProfileLink';
+import QuestionTab from '@/components/shared/QuestionTab';
 import States from '@/components/shared/States';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -75,6 +77,7 @@ const Profile = async ({ params, searchParams }: any) => {
           </SignedIn>
         </div>
       </div>
+
       <States
         totalQuestions={userInfo.totalQuestions}
         totalAnswers={userInfo.totalAnswers}
@@ -82,15 +85,23 @@ const Profile = async ({ params, searchParams }: any) => {
       <div className="mt-10 flex gap-10">
         <Tabs defaultValue="top-posts" className="flex-1">
           <TabsList className="min-h-[42px] p-1">
-            <TabsTrigger value="top-posts" className="tab">
-              QuestionsTab
+            <TabsTrigger value="top-posts" className="tab rounded-sm">
+              Top Questions
             </TabsTrigger>
-            <TabsTrigger value="answers" className="tab">
-              AnswerTab
+            <TabsTrigger value="answers" className="tab rounded-sm">
+              Top Answers
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="top-posts">POSTS</TabsContent>
-          <TabsContent value="answers">Answers </TabsContent>
+          <TabsContent value="top-posts">
+            <QuestionTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
+          <TabsContent value="answers">
+            <AnswerTab />
+          </TabsContent>
         </Tabs>
       </div>
     </>

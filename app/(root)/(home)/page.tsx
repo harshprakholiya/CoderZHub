@@ -1,5 +1,5 @@
 import HomeFilters from '@/components/Home/HomeFilters';
-import NoResult from '@/components/Home/NoResult';
+import NoResult from '@/components/shared/NoResult';
 import QuestionCard from '@/components/cards/QuestionCard';
 import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
@@ -53,7 +53,13 @@ export default async function Home() {
             />
           ))
         ) : (
-          <NoResult />
+          <NoResult title="There’s no Question to show" description="Be the first to break the silence! 🚀 Ask a Question and kickstart the
+          discussion. our query could be the next big thing others learn from. Get
+          involved! 💡" 
+          hasButton={true}
+          btnText="Ask a Question"
+          btnLink="/ask-question"
+          />
         )}
       </div>
     </main>

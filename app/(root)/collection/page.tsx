@@ -1,10 +1,10 @@
 import QuestionCard from '@/components/cards/QuestionCard';
+import NoResult from '@/components/shared/NoResult';
 import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { QuestionFilters } from '@/constants/filters';
 import { getSavedQuestions } from '@/lib/actions/user.action';
 import { auth } from '@clerk/nextjs';
-import Image from 'next/image';
 
 export default async function Home() {
   const { userId } = auth();
@@ -47,32 +47,12 @@ export default async function Home() {
             />
           ))
         ) : (
-          <div className=" flex-center my-10 w-full flex-col">
-            <Image
-              src="/assets/images/no-questions.svg"
-              alt="no Question"
-              width={270}
-              height={200}
-              className="hidden dark:flex"
-            />
-            <Image
-              src="/assets/images/light-no-questions.svg"
-              alt="no Question"
-              width={270}
-              height={200}
-              className="dark:hidden"
-            />
-            <h2
-              className="h2-bold
-          text-invert mt-8"
-            >
-              There’s no saved Question to show
-            </h2>
-            <p className="body-regular text-invert-secondary mt-3.5 max-w-md text-center">
-              Looks like you don&apos;t have any saved questions right now. Save
-              questions to revisit them whenever you want!
-            </p>
-          </div>
+          <NoResult 
+            title="You haven’t saved any questions yet."
+            description="You haven’t saved any questions yet. Save Questions you would want to visit letter 💡"
+            hasButton={false}
+          
+          />
         )}
       </div>
     </main>

@@ -1,0 +1,46 @@
+import { getUserAnswers } from '@/lib/actions/user.action';
+import AnswerCard from '../cards/AnswerCard';
+import NoResult from './NoResult';
+
+interface Props {
+  searchParams: any;
+  userId: string;
+  clerkId?: string | null;
+}
+
+const AnswerTab = async ({ searchParams, userId, clerkId }: Props) => {
+  const result = await getUserAnswers({ userId, page: 1 });
+
+  console.log(result);
+
+
+  // TODO: Add btnLink url (unanswered question) 
+
+  return (
+    <div className="mt-10 flex w-full flex-col gap-6">
+      {result.totalAnswers > 0 ? (
+        result.answers.map((item) => (
+          <AnswerCard
+            key={item._id}
+            clerkId={clerkId}
+            _id={item._id}
+            question={item.question}
+            author={item.author}
+            upvotes={item.upvotes.length}
+            createdAt={item.createdAt}
+          />
+        ))
+      ) : (
+        <NoResult
+          title="You didn't answer any questions yet."
+          description="You haven't answered any questions yet. Answer a Question and kickstart the discussion. Your answer could be the next big thing others learn from. Get involved! 💡"
+          hasButton={true}
+          btnText="Answer a Question"
+          btnLink="/"
+        />
+      )}
+    </div>
+  );
+};
+
+export default AnswerTab;
