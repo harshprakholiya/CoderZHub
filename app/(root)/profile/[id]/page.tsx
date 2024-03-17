@@ -100,7 +100,11 @@ const Profile = async ({ params, searchParams }: any) => {
             />
           </TabsContent>
           <TabsContent value="answers">
-            <AnswerTab />
+            <AnswerTab 
+              searchParams={searchParams} 
+              userId={userInfo.user._id} 
+              clerkId={clerkId}
+            />
           </TabsContent>
         </Tabs>
       </div>

@@ -227,8 +227,8 @@ export async function getUserAnswers(params: getUserSatesParams){
 
     const userAnswers = await Answer.find({author: userId})
       .sort({ upvotes: -1})
-      .populate('question', '_id name')
-      .populate('author', '_id clerkId, name picture')
+      .populate('question', '_id name title')
+      .populate('author', '_id clerkId, name picture upvotes createdAt')
 
       
       return { 

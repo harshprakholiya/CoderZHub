@@ -1,7 +1,7 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import Metric from "../shared/Metric";
-import { formatNumber, getTimeStamps } from "@/lib/utils";
+import Metric from '../shared/Metric';
+import { formatNumber, getTimeStamps } from '@/lib/utils';
 
 interface Props {
   clerkId?: string | null;
@@ -28,7 +28,6 @@ const AnswerCard = ({
   upvotes,
   createdAt,
 }: Props) => {
-
   return (
     <Link
       href={`/question/${question._id}/#${_id}`}
@@ -50,9 +49,9 @@ const AnswerCard = ({
           imgUrl={author.picture}
           alt="user avatar"
           value={author.name}
-          title={` • asked ${getTimeStamps(createdAt)}`}
+          title={` - answered ${getTimeStamps(createdAt)}`}
           href={`/profile/${author.clerkId}`}
-          textStyles="body-medium text-dark400_light700"
+          textStyles="body-medium text-invert-secondary"
           isAuthor
         />
 
@@ -62,7 +61,7 @@ const AnswerCard = ({
             alt="like icon"
             value={formatNumber(upvotes)}
             title=" Votes"
-            textStyles="small-medium text-dark400_light800"
+            textStyles="small-medium text-invert-secondary"
           />
         </div>
       </div>
