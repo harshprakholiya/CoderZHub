@@ -104,7 +104,7 @@ const Profile = async ({ params, searchParams }: any) => {
               searchParams={searchParams} 
               userId={userInfo.user._id} 
               clerkId={clerkId}
-ww            />
+            />
           </TabsContent>
         </Tabs>
       </div>
