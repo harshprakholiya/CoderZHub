@@ -11,6 +11,7 @@ interface questionCardProps {
     _id: string;
     name: string;
     picture: string;
+    clerkId: string;
   };
   upvotes: [];
   views: number;
@@ -30,7 +31,6 @@ const QuestionCard = ({
   answers,
   createdAt,
 }: questionCardProps) => {
-  console.log(upvotes.length);
 
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
@@ -60,7 +60,7 @@ const QuestionCard = ({
           alt="avatar"
           title={` - asked ${getTimeStamps(createdAt)}`}
           textStyles="body-medium card-text-invert-secondary"
-          href={`/profile/${author._id}`}
+          href={`/profile/${author.clerkId}`}
           isAuthor
           value={author.name}
         />

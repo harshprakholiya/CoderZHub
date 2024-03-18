@@ -38,6 +38,7 @@ const Voting = ({
   const [upvoteCount, setUpvoteCount] = useState(upvotes);
   const [downvoteCount, setDownvoteCount] = useState(downvotes);
   const [saved, setSaved] = useState(hasSaved);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   console.log(`has upvoted : ${hasUpvoted}`);
   console.log(`has downvoted : ${hasDownvoted}`);
@@ -61,6 +62,7 @@ const Voting = ({
       setUpvoted(!upvoted);
       setUpvoteCount(upvoted ? upvoteCount - 1 : upvoteCount + 1);
       if (type === 'Question') {
+        setIsSubmitting(true);
         await upvoteQuestion({
           questionId: JSON.parse(itemId),
           userId: JSON.parse(userId),
@@ -68,7 +70,9 @@ const Voting = ({
           hasUpvoted,
           path: pathname,
         });
+        setIsSubmitting(false);
       } else if (type === 'Answer') {
+        setIsSubmitting(true);
         await upvoteAnswer({
           answerId: JSON.parse(itemId),
           userId: JSON.parse(userId),
@@ -76,6 +80,7 @@ const Voting = ({
           hasUpvoted,
           path: pathname,
         });
+        setIsSubmitting(false);
       }
       // TODO: show a tost message
       return;
@@ -90,6 +95,7 @@ const Voting = ({
       setDownvoteCount(downvoted ? downvoteCount - 1 : downvoteCount + 1);
 
       if (type === 'Question') {
+        setIsSubmitting(true);
         await downvoteQuestion({
           questionId: JSON.parse(itemId),
           userId: JSON.parse(userId),
@@ -97,7 +103,9 @@ const Voting = ({
           hasUpvoted,
           path: pathname,
         });
+        setIsSubmitting(false);
       } else if (type === 'Answer') {
+        setIsSubmitting(true);
         await downvoteAnswer({
           answerId: JSON.parse(itemId),
           userId: JSON.parse(userId),
@@ -105,6 +113,7 @@ const Voting = ({
           hasUpvoted,
           path: pathname,
         });
+        setIsSubmitting(false);
       }
     }
   };
@@ -124,22 +133,22 @@ const Voting = ({
       questionId: JSON.parse(itemId),
       userId: userId ? JSON.parse(userId) : undefined,
     });
-   }, [itemId, userId, pathname, router]);
+  }, [itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">
       <div className="flex-center gap-5 ">
-        <div className="flex-center gap-1">
+        <div className="flex-center">
           {/* TODO: change color of border of SVG image  */}
+
           <Image
             src={`${upvoted ? '/assets/icons/upvoted.svg' : '/assets/icons/upvote.svg'}`}
             alt="upvote"
             width={18}
             height={18}
             className="cursor-pointer"
-            onClick={() => handleVote('upvote')}
+            onClick={() => (isSubmitting ? null : handleVote('upvote'))}
           />
-
           <div className="btn flex-center min-w-[18px] rounded-sm p-1 ">
             <p className="subtle-medium text-invert-secondary">
               {formatNumber(upvoteCount)}
@@ -154,9 +163,8 @@ const Voting = ({
             width={18}
             height={18}
             className="cursor-pointer"
-            onClick={() => handleVote('downvote')}
+            onClick={() => (isSubmitting ? null : handleVote('downvote'))}
           />
-
           <div className="btn flex-center min-w-[18px] rounded-sm p-1 ">
             <p className="subtle-medium text-invert-secondary">
               {formatNumber(downvoteCount)}
