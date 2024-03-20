@@ -33,19 +33,15 @@ const Voting = ({
   hasDownvoted,
   hasSaved,
 }: Params) => {
+
+
   const [upvoted, setUpvoted] = useState(hasUpvoted);
   const [downvoted, setDownvoted] = useState(hasDownvoted);
   const [upvoteCount, setUpvoteCount] = useState(upvotes);
   const [downvoteCount, setDownvoteCount] = useState(downvotes);
   const [saved, setSaved] = useState(hasSaved);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  console.log(`has upvoted : ${hasUpvoted}`);
-  console.log(`has downvoted : ${hasDownvoted}`);
-  console.log(`upvotes : ${upvotes}`);
-  console.log(`downvotes : ${downvotes}`);
-  console.log(`upvote counts : ${upvoteCount}`);
-  console.log(`downvote counts : ${downvoteCount}`);
+  
   const pathname = usePathname();
   const router = useRouter();
 

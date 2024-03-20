@@ -16,7 +16,8 @@ export default authMiddleware({
       '/api/chatgpt'
     ]
 });
- 
+
+
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
