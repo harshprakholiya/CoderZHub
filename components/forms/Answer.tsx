@@ -52,7 +52,6 @@ const Answers = ({ question, questionId, authorId }: AnswerProps) => {
       form.reset();
 
       if (editorRef.current) {
-        
         const editor = editorRef.current as any;
         editor.setContent('');
       }
@@ -127,11 +126,12 @@ const Answers = ({ question, questionId, authorId }: AnswerProps) => {
                         'media',
                         'table',
                         'link',
+                        'quickbars', // Add the quickbars plugin here
                       ],
                       toolbar:
                         'undo redo | ' +
                         'codesample | bold italic forecolor | alignleft aligncenter | ' +
-                        'alignright alignjustify | bullist numlist link',
+                        'alignright alignjustify | bullist numlist link | quickbars', // Add quickbars to the toolbar
                       content_style:
                         'body { font-family:Inter; font-size:16px }',
                     }}
