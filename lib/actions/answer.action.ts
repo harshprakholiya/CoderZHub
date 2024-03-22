@@ -5,8 +5,6 @@ import { connectToDatabase } from "../mongoose";
 import { AnswerVoteParams, CreateAnswerParams, DeleteAnswerParams, GetAnswersParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Answer from "@/database/answer.model";
-import { error } from "console";
-import { Tag } from "lucide-react";
 import Interaction from "@/database/interaction.model";
 
 export async function createAnswer(params: CreateAnswerParams){

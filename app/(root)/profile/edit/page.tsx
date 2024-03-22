@@ -1,5 +1,4 @@
 import Profile from '@/components/forms/Profile';
-import Question from '@/components/forms/Question';
 import { getQuestionById } from '@/lib/actions/question.action';
 import { getUserById } from '@/lib/actions/user.action';
 import { auth } from '@clerk/nextjs';
@@ -9,7 +8,7 @@ const Page = async ({ params }: any) => {
   if (!userId) return null;
 
   const mongoUser = await getUserById({ userId });
-  const result = await getQuestionById({ questionId: params.id });
+  // const result = await getQuestionById({ questionId: params.id });
   return (
     <div>
       <h1 className="text-invert h1-bold">Edit Profile</h1>
