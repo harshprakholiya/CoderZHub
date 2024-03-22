@@ -3,11 +3,12 @@
 import Question from "@/database/question.model";
 import { connectToDatabase } from "../mongoose";
 import Tag from "@/database/tags.model";
-import { CreateQuestionParams, DeleteQuestionParams, GetQuestionByIdParams, GetQuestionParams, QuestionVoteParams } from "./shared.types";
+import { CreateQuestionParams, DeleteQuestionParams, GetQuestionByIdParams, GetQuestionParams, QuestionVoteParams, UpdateQuestionParams } from "./shared.types";
 import User from "@/database/user.model";
 import { revalidatePath } from "next/cache";
 import Answer from "@/database/answer.model";
 import Interaction from "@/database/interaction.model";
+import { connect } from "http2";
 
 
 export async function getQuestions(params: GetQuestionParams){
@@ -164,3 +165,29 @@ export async function deleteQuestion(params: DeleteQuestionParams){
         throw error;
     }
 }
+
+export async function updateQuestion(params: UpdateQuestionParams){
+    try {
+        connectToDatabase();
+        const { questionId, title, content, path } = params;
+
+        const question = await Question.findById(questionId)
+            .populate('tags');
+        
+            if(!question){
+                throw new Error('Question Not Found');
+            }
+
+            question.title = title;
+            question.content = content;
+
+            await question.save();
+
+            revalidatePath(path)
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
