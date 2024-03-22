@@ -52,7 +52,7 @@ const Profile = ({ clerkId, user }: Props) => {
         clerkId,
         updateData: {
           name: values.name,
-          username: values.name,
+          username: values.username,
           portfolioWebsite: values.portfolioWebsite,
           location: values.location,
           bio: values.bio,
