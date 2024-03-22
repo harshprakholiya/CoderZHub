@@ -33,10 +33,15 @@ const Question = ({ type, mongoUserId, questionDetails }: QuestionProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  // Check if questionDetails is not empty or undefined before parsing
+  const parsedQuestionDetails = questionDetails
+    ? JSON.parse(questionDetails)
+    : '';
 
-  const parsedQuestionDetails = JSON.parse(questionDetails || '');
-
-  const groupedTags = parsedQuestionDetails.tags.map((tag) => tag.name);
+  // Ensure parsedQuestionDetails is not null before accessing its properties
+  const groupedTags = parsedQuestionDetails
+    ? parsedQuestionDetails.tags.map((tag: any) => tag.name)
+    : [];
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({
