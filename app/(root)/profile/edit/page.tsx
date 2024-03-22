@@ -1,5 +1,4 @@
 import Profile from '@/components/forms/Profile';
-import { getQuestionById } from '@/lib/actions/question.action';
 import { getUserById } from '@/lib/actions/user.action';
 import { auth } from '@clerk/nextjs';
 
