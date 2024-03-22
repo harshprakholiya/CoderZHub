@@ -7,8 +7,10 @@ import { Button } from '@/components/ui/button';
 import { HomePageFilters } from '@/constants/filters';
 import { getQuestions } from '@/lib/actions/question.action';
 import Link from 'next/link';
+import { auth } from '@clerk/nextjs';
 
 export default async function Home() {
+  const { userId: clerkId } = auth();
   const result = await getQuestions({});
   return (
     <main>
@@ -50,6 +52,7 @@ export default async function Home() {
               views={question.views}
               answers={question.answers}
               createdAt={question.createdAt}
+              clerkId={clerkId}
             />
           ))
         ) : (

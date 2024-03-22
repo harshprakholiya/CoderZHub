@@ -126,3 +126,13 @@ export interface getUserSatesParams {
   page?: number;
   pageSize?: number; 
 }
+
+export interface DeleteQuestionParams {
+  questionId: string;
+  path: string;
+}
+
+export interface DeleteAnswerParams {
+  answerId: string;
+  path: string;
+}

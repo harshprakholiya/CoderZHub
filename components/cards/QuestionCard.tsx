@@ -3,6 +3,8 @@ import React from 'react';
 import RenderTags from '../shared/RenderTags';
 import Metric from '../shared/Metric';
 import { formatNumber, getTimeStamps } from '@/lib/utils';
+import { SignedIn } from '@clerk/nextjs';
+import EditDeleteAction from '../shared/EditDeleteAction';
 interface questionCardProps {
   _id: string;
   title: string;
@@ -20,6 +22,9 @@ interface questionCardProps {
   clerkId?: string | null;
 }
 
+
+// TODO: add clerkId params to all QuestionCard 
+
 const QuestionCard = ({
   clerkId,
   _id,
@@ -31,6 +36,10 @@ const QuestionCard = ({
   answers,
   createdAt,
 }: questionCardProps) => {
+
+
+  const showActionButton = clerkId && clerkId === author.clerkId;
+
 
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
@@ -46,7 +55,13 @@ const QuestionCard = ({
           </Link>
         </div>
 
-        {/* if logged in add Edit delete button */}
+        <SignedIn>
+          {showActionButton && (
+            <div>
+              <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
+            </div>
+          )}
+        </SignedIn>
       </div>
       <div className="mt-3.5 flex flex-wrap gap-2 ">
         {tags.map((tag) => (
