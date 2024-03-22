@@ -34,11 +34,11 @@ const Profile = async ({ params, searchParams }: any) => {
             <p className="paragraph-regular text-invert-3 ">
               @{userInfo.user.username}
             </p>
-            <div className="mt-5 flex flex-wrap items-center justify-start">
+            <div className="mt-5 flex flex-wrap items-center justify-start gap-4">
               {userInfo.user.portfolioWebsite && (
                 <ProfileLink
                   imgUrl="/assets/icons/link.svg"
-                  title={userInfo.user.location}
+                  title="Portfolio"
                   href={userInfo.user.portfolioWebsite}
                 />
               )}
@@ -100,9 +100,9 @@ const Profile = async ({ params, searchParams }: any) => {
             />
           </TabsContent>
           <TabsContent value="answers">
-            <AnswerTab 
-              searchParams={searchParams} 
-              userId={userInfo.user._id} 
+            <AnswerTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
               clerkId={clerkId}
             />
           </TabsContent>
