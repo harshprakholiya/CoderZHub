@@ -17,15 +17,19 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '../ui/textarea';
 import { useState } from 'react';
 import { ProfileSchema } from '@/lib/validation';
+import { usePathname, useRouter } from 'next/navigation';
+import { updateUser } from '@/lib/actions/user.action';
 
-interface params {
+interface Props {
   clerkId: string;
   user: string;
 }
 
-const Profile = ({ clerkId, user }: params) => {
+const Profile = ({ clerkId, user }: Props) => {
+  const router = useRouter();
   const parsedUser = JSON.parse(user);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const pathname = usePathname()
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof ProfileSchema>>({
@@ -40,10 +44,27 @@ const Profile = ({ clerkId, user }: params) => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof ProfileSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof ProfileSchema>) {
+    setIsSubmitting(true);
+
+    try {
+      await updateUser({
+        clerkId,
+        updateData: {
+          name: values.name,
+          username: values.name,
+          portfolioWebsite: values.portfolioWebsite,
+          location: values.location,
+          bio: values.bio,
+        },
+        path: pathname,
+      });
+      router.back();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -57,12 +78,12 @@ const Profile = ({ clerkId, user }: params) => {
           name="name"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>
+              <FormLabel className="text-invert">
                 Name <span className="primary-text-gradient">*</span>
               </FormLabel>
               <FormControl>
                 <Input
-                  className="no-focus paragraph-regular text-invert-secondary min-h-[56px]"
+                  className="no-focus paragraph-regular input_background text-invert-secondary min-h-[56px]"
                   placeholder="Your name"
                   {...field}
                 />
@@ -77,12 +98,12 @@ const Profile = ({ clerkId, user }: params) => {
           name="username"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>
+              <FormLabel className="text-invert">
                 Username <span className="primary-text-gradient">*</span>
               </FormLabel>
               <FormControl>
                 <Input
-                  className="no-focus paragraph-regular text-invert-secondary min-h-[56px]"
+                  className="no-focus paragraph-regular input_background text-invert-secondary min-h-[56px]"
                   placeholder="Your username"
                   {...field}
                 />
@@ -97,11 +118,11 @@ const Profile = ({ clerkId, user }: params) => {
           name="portfolioWebsite"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>Portfolio Website </FormLabel>
+              <FormLabel className="text-invert">Portfolio Website </FormLabel>
               <FormControl>
                 <Input
                   type="url"
-                  className="no-focus paragraph-regular text-invert-secondary min-h-[56px]"
+                  className="no-focus paragraph-regular input_background text-invert-secondary min-h-[56px]"
                   placeholder="Your portfolio URL"
                   {...field}
                 />
@@ -116,10 +137,10 @@ const Profile = ({ clerkId, user }: params) => {
           name="location"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>Location</FormLabel>
+              <FormLabel className="text-invert">Location</FormLabel>
               <FormControl>
                 <Input
-                  className="no-focus paragraph-regular text-invert-secondary min-h-[56px]"
+                  className="no-focus paragraph-regular input_background text-invert-secondary min-h-[56px]"
                   placeholder="Where are you from?"
                   {...field}
                 />
@@ -134,11 +155,11 @@ const Profile = ({ clerkId, user }: params) => {
           name="bio"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel>Bio</FormLabel>
+              <FormLabel className="text-invert">Bio</FormLabel>
               <FormControl>
                 <Textarea
-                  className="no-focus paragraph-regular text-invert-secondary min-h-[56px]"
-                  placeholder="Write something special about you"
+                  className="no-focus paragraph-regular input_background text-invert-secondary min-h-[56px]"
+                  placeholder="Write something special about you."
                   {...field}
                 />
               </FormControl>
@@ -149,7 +170,7 @@ const Profile = ({ clerkId, user }: params) => {
         <div className="mt-7 flex justify-end">
           <Button
             type="submit"
-            className="primary-gradient w-fit "
+            className="primary-gradient w-fit text-white"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Saving' : 'Save'}
