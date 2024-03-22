@@ -29,7 +29,7 @@ const Profile = ({ clerkId, user }: Props) => {
   const router = useRouter();
   const parsedUser = JSON.parse(user);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof ProfileSchema>>({
@@ -75,16 +75,17 @@ const Profile = ({ clerkId, user }: Props) => {
       >
         <FormField
           control={form.control}
-          name="name"
+          name="username"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="text-invert">
-                Name <span className="primary-text-gradient">*</span>
+                Username <span className="primary-text-gradient">*</span>
               </FormLabel>
               <FormControl>
                 <Input
+                  disabled={true}
                   className="no-focus paragraph-regular input_background text-invert-secondary min-h-[56px]"
-                  placeholder="Your name"
+                  placeholder="Your username"
                   {...field}
                 />
               </FormControl>
@@ -95,16 +96,16 @@ const Profile = ({ clerkId, user }: Props) => {
 
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="text-invert">
-                Username <span className="primary-text-gradient">*</span>
+                Name <span className="primary-text-gradient">*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   className="no-focus paragraph-regular input_background text-invert-secondary min-h-[56px]"
-                  placeholder="Your username"
+                  placeholder="Your name"
                   {...field}
                 />
               </FormControl>
