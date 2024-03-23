@@ -6,8 +6,10 @@ import { UserFilters } from '@/constants/filters';
 import { getAllUsers } from '@/lib/actions/user.action';
 import Image from 'next/image';
 import Link from 'next/link';
-const Community = async () => {
-  const result = await getAllUsers({});
+const Community = async ({ searchParams }: any) => {  
+  const result = await getAllUsers({
+    searchQuery: searchParams?.q,
+  });
 
   return (
     <>
