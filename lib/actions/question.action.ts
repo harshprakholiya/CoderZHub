@@ -25,9 +25,9 @@ export async function getQuestions(params: GetQuestionParams){
          ] 
         }
 
-        // TODO: add recommended filter
+        // TODO: add recommended 
 
-        let sortOption = {createdAt: -1};
+        let sortOption = {};
 
         switch (filter) {
             case "newest":
