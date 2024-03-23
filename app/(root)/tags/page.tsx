@@ -5,9 +5,11 @@ import { TagFilters } from '@/constants/filters';
 import { getAllTags } from '@/lib/actions/tag.actions';
 import Link from 'next/link';
 
-const Tags = async () => {
-  const result = await getAllTags({});
-
+const Tags = async ({searchParams}: any) => {
+  const result = await getAllTags({
+    searchQuery: searchParams?.q,
+  });
+console.log('The tags'+ result.tags)
   return (
     <>
       <h1 className="sm:h1-bold h2-bold text-invert w-full font-inter">
@@ -16,7 +18,7 @@ const Tags = async () => {
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearchBar
-          route="/community"
+          route={`/tags/${result.tags._id}`}
           imgSrc="/assets/icons/search.svg"
           iconPosition="left"
           placeholder="Search for users"
