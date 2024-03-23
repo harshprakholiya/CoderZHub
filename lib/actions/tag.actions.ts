@@ -40,7 +40,7 @@ export async function getAllTags(params: GetAllTagsParams){
   }
 }
 
-export  async function getQuestionByTagId(params: getQuestionByTagIdParams){
+export async function getQuestionByTagId(params: getQuestionByTagIdParams){
   try {
     connectToDatabase();
     const { tagId, page=1, pageSize=10, searchQuery } = params;
@@ -69,6 +69,23 @@ export  async function getQuestionByTagId(params: getQuestionByTagIdParams){
     
   } catch (error) {
     console.log(error);
+    throw error;
+  }
+}
+
+export async function getPopularTags(){
+  try {
+    connectToDatabase();
+    const popularTags = await Tag.aggregate([
+      {$project: {name: 1, totalQuestions:{$size: "$questions"}}},
+      {$sort: {totalQuestions: -1}},
+      {$limit: 5}
+    ])
+
+    return popularTags;
+    
+  } catch (error) {
+    console.log(error)
     throw error;
   }
 }
