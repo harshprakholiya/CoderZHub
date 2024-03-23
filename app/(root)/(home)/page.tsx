@@ -9,9 +9,11 @@ import { getQuestions } from '@/lib/actions/question.action';
 import Link from 'next/link';
 import { auth } from '@clerk/nextjs';
 
-export default async function Home() {
+export default async function Home({ searchParams }: any) {
   const { userId: clerkId } = auth();
-  const result = await getQuestions({});
+  const result = await getQuestions({
+    searchQuery: searchParams?.q,
+  });
   return (
     <main>
       <div className="flex-between gap-4 ">
@@ -56,12 +58,14 @@ export default async function Home() {
             />
           ))
         ) : (
-          <NoResult title="There’s no Question to show" description="Be the first to break the silence! 🚀 Ask a Question and kickstart the
+          <NoResult
+            title="There’s no Question to show"
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the
           discussion. our query could be the next big thing others learn from. Get
-          involved! 💡" 
-          hasButton={true}
-          btnText="Ask a Question"
-          btnLink="/ask-question"
+          involved! 💡"
+            hasButton={true}
+            btnText="Ask a Question"
+            btnLink="/ask-question"
           />
         )}
       </div>
