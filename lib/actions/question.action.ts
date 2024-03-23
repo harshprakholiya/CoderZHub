@@ -14,7 +14,7 @@ export async function getQuestions(params: GetQuestionParams){
     try {
         connectToDatabase();
 
-        const { searchQuery } = params;
+        const { searchQuery, filter } = params;
 
         const query: FilterQuery<typeof Question> = {}
 
@@ -24,10 +24,30 @@ export async function getQuestions(params: GetQuestionParams){
             {content: { $regex: new RegExp(searchQuery, "i")}},
          ] 
         }
+
+        // TODO: add recommended filter
+
+        let sortOption = {createdAt: -1};
+
+        switch (filter) {
+            case "newest":
+                sortOption = {createdAt: -1}
+                break;
+            case "frequent":
+                sortOption = {views: -1}
+                break;
+
+            case "unanswered":
+                query.answers = { $size: 0}
+                break;
+        }
+
+        console.log(sortOption)
+
         const question = await Question.find(query)
         .populate({ path: 'tags', model: Tag})
         .populate({ path: 'author', model: User })
-        .sort({createdAt: -1})
+        .sort(sortOption)
         return { question }
     } catch (error) {
         console.log(`getQuestions : ${error}`);

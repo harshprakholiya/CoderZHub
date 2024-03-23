@@ -13,6 +13,7 @@ export default async function Home({ searchParams }: any) {
   const { userId: clerkId } = auth();
   const result = await getQuestions({
     searchQuery: searchParams?.q,
+    filter: searchParams?.f,
   });
   return (
     <main>
