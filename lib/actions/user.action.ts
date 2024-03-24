@@ -174,7 +174,7 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams){
     ? { title: { $regex: new RegExp(searchQuery, 'i')} } 
     :{};
 
-    let sortOptions = {createdAt: -1};
+    let sortOptions = {};
 
     switch (filter) {
       case 'most_recent':
