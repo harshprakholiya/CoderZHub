@@ -8,8 +8,10 @@ import Link from 'next/link';
 const Tags = async ({searchParams}: any) => {
   const result = await getAllTags({
     searchQuery: searchParams?.q,
+    filter: searchParams?.filter,
   });
-console.log('The tags'+ result.tags)
+
+
   return (
     <>
       <h1 className="sm:h1-bold h2-bold text-invert w-full font-inter">
@@ -18,7 +20,7 @@ console.log('The tags'+ result.tags)
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearchBar
-          route={`/tags/${result.tags._id}`}
+          route={`/tags`}
           imgSrc="/assets/icons/search.svg"
           iconPosition="left"
           placeholder="Search for users"

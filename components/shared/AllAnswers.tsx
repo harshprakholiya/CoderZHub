@@ -22,7 +22,11 @@ const AllAnswers = async ({
   page,
   filter,
 }: AllAnswerProps) => {
-  const result = await getAnswer({ questionId });
+  const result = await getAnswer({
+    questionId,
+    page: page ? +page : 1,
+    sortBy: filter,
+  });
 
   return (
     <div className="mt-11 ">

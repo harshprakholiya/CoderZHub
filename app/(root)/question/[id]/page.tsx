@@ -21,8 +21,6 @@ const Page = async ({ params, searchParams }: any) => {
 
   const result = await getQuestionById({ questionId: params.id });
 
-  console.log(`Question details page ${JSON.stringify(result._id)}`);
-
   console.log(result);
   return (
     <>
@@ -108,6 +106,8 @@ const Page = async ({ params, searchParams }: any) => {
         questionId={result._id}
         userId={mongoUser._id}
         totalAnswers={result.answers.length}
+        page={searchParams?.page}
+        filter={searchParams?.filter}
       />
     </>
   );

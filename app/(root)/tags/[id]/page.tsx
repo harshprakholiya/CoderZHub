@@ -11,7 +11,7 @@ const Page = async ({ params, searchParams }: any) => {
     searchQuery: searchParams.q,
   });
 
-  console.log(result);
+
 
   return (
     <main>
