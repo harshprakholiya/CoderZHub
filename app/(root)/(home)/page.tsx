@@ -8,12 +8,14 @@ import { HomePageFilters } from '@/constants/filters';
 import { getQuestions } from '@/lib/actions/question.action';
 import Link from 'next/link';
 import { auth } from '@clerk/nextjs';
+import Pagination from '@/components/shared/Pagination';
 
 export default async function Home({ searchParams }: any) {
   const { userId: clerkId } = auth();
   const result = await getQuestions({
     searchQuery: searchParams?.q,
     filter: searchParams?.f,
+    page: searchParams?.page ? +searchParams.page : 1,
   });
   return (
     <main>
@@ -69,6 +71,9 @@ export default async function Home({ searchParams }: any) {
             btnLink="/ask-question"
           />
         )}
+      </div>
+      <div className="mt-10 w-full items-center">
+        <Pagination pageNumber={searchParams?.page ? +searchParams.page : 1} isNext={result.isNext}/>
       </div>
     </main>
   );
