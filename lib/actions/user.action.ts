@@ -97,10 +97,10 @@ export async function getAllUsers( params: GetAllUsersParams) {
 
     switch (filter) {
       case 'new_users':
-        sortOptions = { JoinedAt: -1}
+        sortOptions = { joinedAt: -1}
         break;
       case 'old_users':
-        sortOptions = { JoinedAt: 1}
+        sortOptions = { joinedAt: 1}
        
         break;
       case 'top_contributors':

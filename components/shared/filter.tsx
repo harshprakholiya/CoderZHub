@@ -30,15 +30,15 @@ const Filter = ({ filters, otherClasses, containerClasses }: filterProps) => {
   const handleUpdateParams = (value: string) => {
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
-      key: 'f',
+      key: 'filter',
       value,
     });
 
-    router.push(newUrl, {scroll: false});
+    router.push(newUrl, { scroll: false });
   };
   return (
     <div className={`relative ${containerClasses}`}>
-      <Select>
+      <Select onValueChange={handleUpdateParams} defaultValue={paramsFilters || undefined}>
         <SelectTrigger
           className={`${otherClasses} body-regular filter_background border px-5 py-2.5 text-gray-400`}
         >
