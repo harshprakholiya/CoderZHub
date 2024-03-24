@@ -2,11 +2,8 @@ import UserCard from '@/components/cards/UserCard';
 import NoResult from '@/components/shared/NoResult';
 import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
-import { Button } from '@/components/ui/button';
 import { UserFilters } from '@/constants/filters';
 import { getAllUsers } from '@/lib/actions/user.action';
-import Image from 'next/image';
-import Link from 'next/link';
 const Community = async ({ searchParams }: any) => {
   const result = await getAllUsers({
     searchQuery: searchParams?.q,

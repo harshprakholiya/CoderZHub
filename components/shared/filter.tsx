@@ -38,10 +38,7 @@ const Filter = ({ filters, otherClasses, containerClasses }: filterProps) => {
   };
   return (
     <div className={`relative ${containerClasses}`}>
-      <Select
-        onValueChange={handleUpdateParams}
-        defaultValue={paramsFilters || undefined}
-      >
+      <Select>
         <SelectTrigger
           className={`${otherClasses} body-regular filter_background border px-5 py-2.5 text-gray-400`}
         >
