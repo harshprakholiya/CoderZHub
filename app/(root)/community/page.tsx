@@ -30,7 +30,7 @@ const Community = async ({ searchParams }: any) => {
         />
       </div>
 
-      <section className="flex-center mt-12 flex-wrap gap-4">
+      <div className="flex-center mt-12 flex-wrap gap-4">
         {result.users.length > 0 ? (
           result.users.map((user) => <UserCard key={user._id} user={user} />)
         ) : (
@@ -39,7 +39,7 @@ const Community = async ({ searchParams }: any) => {
             description="We couldn't find any users with the search query"
           />
         )}
-      </section>
+      </div>
     </>
   );
 };

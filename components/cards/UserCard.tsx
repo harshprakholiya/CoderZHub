@@ -17,22 +17,23 @@ interface UserProps {
 const UserCard = async ({ user }: UserProps) => {
   const interactedTags = await getTopInteractedTags({ userId: user._id });
   return (
-    <Link
-      href={`/profile/${user.clerkId}`}
-      className="w-full rounded-2xl shadow-md max-xs:min-w-full xs:w-[260px]"
-    >
+    <div className="w-full rounded-2xl shadow-md max-xs:min-w-full xs:w-[260px]">
       <div className="card-wrapper flex w-full flex-col items-center justify-center rounded-2xl p-8">
-        <Image
-          src={user.picture}
-          alt={user.name}
-          width={100}
-          height={100}
-          className="rounded-full"
-        />
-        <div className="mt-4 text-center">
-          <h3 className="h3-bold text-invert line-clamp-1">{user.name}</h3>
-          <p className=" body-regular text-invert-3 mt-2">@{user.username}</p>
-        </div>
+        <Link href={`/profile/${user.clerkId}`}>
+          <Image
+            src={user.picture}
+            alt={user.name}
+            width={100}
+            height={100}
+            className="rounded-full"
+          />
+        </Link>
+        <Link href={`/profile/${user.clerkId}`}>
+          <div className="mt-4 text-center">
+            <h3 className="h3-bold text-invert line-clamp-1">{user.name}</h3>
+            <p className=" body-regular text-invert-3 mt-2">@{user.username}</p>
+          </div>
+        </Link>
 
         <div className="mt-5">
           {interactedTags.length > 0 ? (
@@ -46,7 +47,7 @@ const UserCard = async ({ user }: UserProps) => {
           )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
