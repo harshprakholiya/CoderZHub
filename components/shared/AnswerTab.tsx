@@ -1,6 +1,7 @@
 import { getUserAnswers } from '@/lib/actions/user.action';
 import AnswerCard from '../cards/AnswerCard';
 import NoResult from './NoResult';
+import Pagination from './Pagination';
 
 interface Props {
   searchParams: any;
@@ -9,10 +10,12 @@ interface Props {
 }
 
 const AnswerTab = async ({ searchParams, userId, clerkId }: Props) => {
-  const result = await getUserAnswers({ userId, page: 1 });
+  const result = await getUserAnswers({
+    userId,
+    page: searchParams.page ? +searchParams.page : 1,
+  });
 
-
-  // TODO: Add btnLink url (unanswered question) 
+  // TODO: Add btnLink url (unanswered question)
 
   return (
     <div className="mt-10 flex w-full flex-col gap-6">
@@ -37,6 +40,12 @@ const AnswerTab = async ({ searchParams, userId, clerkId }: Props) => {
           btnLink="/"
         />
       )}
+      <div className="mt-10 w-full items-center">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNextAnswer}
+        />
+      </div>
     </div>
   );
 };

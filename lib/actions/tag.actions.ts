@@ -29,8 +29,10 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 export async function getAllTags(params: GetAllTagsParams){
   try {
 
-  const { searchQuery, filter } = params;
 
+    const { searchQuery, filter, page=1, pageSize=20 } = params;
+    const skipCount = (page - 1) * pageSize;
+    
   const query: FilterQuery<typeof Tag> = {};
 
   let sortOptions = {};
@@ -62,9 +64,15 @@ export async function getAllTags(params: GetAllTagsParams){
 
     connectToDatabase();
 
-    const tags = await Tag.find(query).sort(sortOptions);
+    const tags = await Tag.find(query)
+      .sort(sortOptions)
+      .skip(skipCount)
+      .limit(pageSize);
 
-    return { tags };
+    const totalTags = await Tag.countDocuments(query);
+    const isNext = totalTags > skipCount + tags.length;
+
+    return { tags, isNext };
   } catch (error) {
     console.log(error);
     throw error;
@@ -74,7 +82,13 @@ export async function getAllTags(params: GetAllTagsParams){
 export async function getQuestionByTagId(params: getQuestionByTagIdParams){
   try {
     connectToDatabase();
+  
+    
+    
+    
     const { tagId, page=1, pageSize=10, searchQuery } = params;
+    
+    const skipCount = (page - 1) * pageSize;
 
     const tagFilter: FilterQuery<ITag> = {_id: tagId};
 
@@ -85,6 +99,8 @@ export async function getQuestionByTagId(params: getQuestionByTagIdParams){
         match: searchQuery ? { title: {$regex: searchQuery, $options: 'i'}} : {}, 
         options: {
           sort: { createdAt: -1 },
+          skip: skipCount,
+          limit: pageSize + 1
         },
         populate: [
           {path: 'tags', model: 'Tag', select: "_id name"},
@@ -95,8 +111,11 @@ export async function getQuestionByTagId(params: getQuestionByTagIdParams){
 
       if(!tag) throw new Error('Tag not found');
 
+
+
+    const isNext = tag.questions.length > pageSize;
       const questions = tag.questions; 
-      return { tagTitle: tag.name, questions}
+      return { tagTitle: tag.name, questions, isNext}
     
   } catch (error) {
     console.log(error);

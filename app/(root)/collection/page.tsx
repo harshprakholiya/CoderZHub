@@ -1,5 +1,6 @@
 import QuestionCard from '@/components/cards/QuestionCard';
 import NoResult from '@/components/shared/NoResult';
+import Pagination from '@/components/shared/Pagination';
 import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { QuestionFilters } from '@/constants/filters';
@@ -15,6 +16,7 @@ export default async function Home({ searchParams }: any) {
     clerkId: userId,
     searchQuery: searchParams?.q,
     filter: searchParams?.filter,
+    page: searchParams?.page ? +searchParams.page : 1,
   });
   return (
     <main>
@@ -57,6 +59,9 @@ export default async function Home({ searchParams }: any) {
           
           />
         )}
+      </div>
+      <div className="mt-10 w-full items-center">
+        <Pagination pageNumber={searchParams?.page ? +searchParams.page : 1} isNext={result.isNext}/>
       </div>
     </main>
   );

@@ -1,6 +1,7 @@
 import { getUserQuestions } from '@/lib/actions/user.action';
 import QuestionCard from '../cards/QuestionCard';
 import NoResult from './NoResult';
+import Pagination from './Pagination';
 
 interface Props {
   searchParams: any;
@@ -10,7 +11,7 @@ interface Props {
 const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
   const result = await getUserQuestions({
     userId,
-    page: 1,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
@@ -31,14 +32,21 @@ const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
           />
         ))
       ) : (
-        <NoResult 
-          title='You didn’t ask any questions yet.'
-          description='You haven’t asked any questions yet. Ask a Question and kickstart the discussion. Your query could be the next big thing others learn from. Get involved! 💡'
+        <NoResult
+          title="You didn’t ask any questions yet."
+          description="You haven’t asked any questions yet. Ask a Question and kickstart the discussion. Your query could be the next big thing others learn from. Get involved! 💡"
           hasButton={true}
-          btnText='Ask a Question'
-          btnLink='/ask-question'      
+          btnText="Ask a Question"
+          btnLink="/ask-question"
         />
       )}
+
+      <div className="mt-10 w-full items-center">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNextQuestions}
+        />
+      </div>
     </div>
   );
 };

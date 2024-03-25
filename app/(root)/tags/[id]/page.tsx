@@ -1,4 +1,5 @@
 import QuestionCard from '@/components/cards/QuestionCard';
+import Pagination from '@/components/shared/Pagination';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 
 import { getQuestionByTagId } from '@/lib/actions/tag.actions';
@@ -7,8 +8,8 @@ import Image from 'next/image';
 const Page = async ({ params, searchParams }: any) => {
   const result = await getQuestionByTagId({
     tagId: params.id,
-    page: 1,
     searchQuery: searchParams.q,
+    page: searchParams?.page ? +searchParams.page : 1,
   });
 
 
@@ -73,6 +74,10 @@ const Page = async ({ params, searchParams }: any) => {
             </p>
           </div>
         )}
+      </div>
+
+      <div className="mt-10 w-full items-center">
+        <Pagination pageNumber={searchParams?.page ? +searchParams.page : 1} isNext={result.isNext}/>
       </div>
     </main>
   );
