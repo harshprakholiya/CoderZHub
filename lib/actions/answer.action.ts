@@ -38,10 +38,8 @@ export async function createAnswer(params: CreateAnswerParams){
             tags: answerObject.tags
         });
 
-        await User.findByIdAndUpdate({
-            author,
-            $inc: {reputation: 10}
-        })
+        await User.findByIdAndUpdate(author, { $inc: { reputation: 10 } });
+
     
     
         revalidatePath(path);

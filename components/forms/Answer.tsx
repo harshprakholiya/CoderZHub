@@ -30,6 +30,8 @@ const Answers = ({ question, questionId, authorId }: AnswerProps) => {
   const editorRef = useRef(null);
   const { mode } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmittingAI, setIsSubmittingAI] = useState(false);
+  const [editorContent, setEditorContent] = useState('');
 
   const form = useForm<z.infer<typeof AnswersSchema>>({
     resolver: zodResolver(AnswersSchema),
@@ -63,6 +65,38 @@ const Answers = ({ question, questionId, authorId }: AnswerProps) => {
     }
   };
 
+  const handleEditorChange = (content: any) => {
+    setEditorContent(content);
+  };
+
+  const enhanceAnswer = async () => {
+    if (!authorId) return;
+    setIsSubmittingAI(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ editorContent }),
+        }
+      );
+
+      const aiAnswer = await response.json();
+
+      const aiReplay = aiAnswer.reply;
+      if (editorRef.current) {
+        const editor = editorRef.current as any;
+        editor.setContent(aiReplay);
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    } finally {
+      setIsSubmittingAI(false);
+    }
+  };
+
   return (
     <div>
       <div className="mt-8 flex w-full flex-row items-center justify-between gap-5 max-sm:mt-3 sm:gap-2">
@@ -73,16 +107,32 @@ const Answers = ({ question, questionId, authorId }: AnswerProps) => {
         {/*  TODO: Add hover effect to the button */}
         <Button
           className="btn text-invert-secondary gap-1.5 rounded-md px-4 py-2.5"
-          onClick={() => {}}
+          onClick={enhanceAnswer}
+          disabled={isSubmittingAI}
         >
-          <Image
-            src="/assets/icons/stars.svg"
-            alt="star icon"
-            width={12}
-            height={12}
-            className="object-contain"
-          />
-          <p className="max-sm:hidden">Enhance your answer</p>
+          {isSubmittingAI ? (
+            <>
+              <Image
+                src="/assets/icons/stars.svg"
+                alt="star icon"
+                width={12}
+                height={12}
+                className="object-contain"
+              />
+              <p className="max-sm:hidden">Enhancing...</p>
+            </>
+          ) : (
+            <>
+              <Image
+                src="/assets/icons/stars.svg"
+                alt="star icon"
+                width={12}
+                height={12}
+                className="object-contain"
+              />
+              <p className="max-sm:hidden">Enhance your answer</p>
+            </>
+          )}
         </Button>
       </div>
       <Form {...form}>
@@ -99,9 +149,12 @@ const Answers = ({ question, questionId, authorId }: AnswerProps) => {
                   <Editor
                     key={mode}
                     apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+                    // onEditorChange={(content, field) => handleEditorChange}
                     onBlur={field.onBlur}
-                    onEditorChange={(content) => field.onChange(content)}
-                    // @ts-ignore
+                    onEditorChange={(content) => {
+                      field.onChange(content);
+                      handleEditorChange(content);
+                    }} // @ts-ignore
                     onInit={(evt, editor) => (editorRef.current = editor)}
                     initialValue=""
                     init={{
