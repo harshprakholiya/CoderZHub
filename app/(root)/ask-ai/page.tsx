@@ -17,31 +17,37 @@ const Page = () => {
   };
 
   const handleSubmit = async () => {
-    setIsSubmitting(true);
-    setIsLoading(true);
-
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/ask-ai`,
-        {
-          method: 'POST',
-          body: JSON.stringify({ question }),
-        }
-      );
-
-      const aiAnswer = await response.json();
-
-      const aiReplay = aiAnswer.reply;
-
-      setContent(aiReplay);
-      setQuestion('');
-    } catch (error) {
-      console.log(error);
-      throw error;
-    } finally {
-      setIsSubmitting(false);
-      setIsLoading(false);
+    
+    if(content === '') {
+      setIsSubmitting(true);
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/ask-ai`,
+          {
+            method: 'POST',
+            body: JSON.stringify({ question }),
+          }
+        );
+  
+        const aiAnswer = await response.json();
+  
+        const aiReplay = aiAnswer.reply;
+  
+        setContent(aiReplay);
+        setQuestion('');
+      } catch (error) {
+        console.log(error);
+        throw error;
+      } finally {
+        setIsSubmitting(false);
+        setIsLoading(false);
+      }
+    } else {
+      setContent('');
     }
+
+    
   };
 
   return (
