@@ -270,7 +270,7 @@ export async function getUserQuestions(params: getUserSatesParams){
     const totalQuestions = await Question.countDocuments({author: userId});
 
     const userQuestions = await Question.find({author: userId})
-      .sort({views: -1, upvotes: -1})
+      .sort({createdAt: -1, views: -1, upvotes: -1})
       .skip(skipCount)
       .limit(pageSize)
       .populate('tags', '_id name')

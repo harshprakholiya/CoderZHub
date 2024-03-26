@@ -14,12 +14,12 @@ export async function getQuestions(params: GetQuestionParams){
     try {
         connectToDatabase();
 
-        const { searchQuery, filter, page=1, pageSize=15 } = params;
+        const { searchQuery, filter, page=1, pageSize=3 } = params;
 
 
         // calculate the number of posts to skip based on page number and page size...
         const skipCount = (page - 1) * pageSize;
-
+        
         const query: FilterQuery<typeof Question> = {}
 
         if(searchQuery){
@@ -96,7 +96,18 @@ export async function createQuestion(params: CreateQuestionParams) {
         await Question.findByIdAndUpdate(question._id,
             { $push: { tags: { $each: tagDocument } } });
 
-            revalidatePath(path)
+        await Interaction.create({
+            user: author,
+            action: 'ask_question',
+            question: question._id,
+            tags: tagDocument
+        })  
+
+        await User.findByIdAndUpdate(author, {$inc: { reputation: 5}});
+        
+        revalidatePath(path)
+
+        
 
     } catch (error) {
         console.log(`createQuestion : ${error}`)
