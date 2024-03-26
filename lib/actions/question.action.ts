@@ -156,7 +156,13 @@ export async function upvoteQuestion(params: QuestionVoteParams){
 
         if(!question) throw new Error("Question not found");
 
-        // TODO: update users reputation
+        await User.findByIdAndUpdate(userId, {
+            $inc: {reputation: hasUpvoted ? -1 : 1}
+        })
+
+        await User.findByIdAndUpdate(question.author, {
+            $inc: {reputation: hasUpvoted ? -10 : 10}
+        })
 
         revalidatePath(path);
 
@@ -189,7 +195,13 @@ export async function downvoteQuestion(params: QuestionVoteParams){
 
         if(!question) throw new Error("Question not found");
 
-        // TODO: update users reputation
+        await User.findByIdAndUpdate(userId, {
+            $inc: {reputation: hasDownvoted ? -1 : 1}
+        })
+
+        await User.findByIdAndUpdate(question.author, {
+            $inc: {reputation: hasDownvoted ? -10 : 10}
+        })
 
         revalidatePath(path);
 
