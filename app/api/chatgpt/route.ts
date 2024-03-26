@@ -16,7 +16,7 @@ export const POST = async (request: Request) => {
             messages: [
               {
                 role: 'system',
-                content: "You are export in enhancing and improving code. whenever you get a simple html code. you'll add tags like <Link>, <code>, <strong>, <ul>, <li>, <h1>, <h2>, <h3>, <blockquote> and so on wherever necessary and make code look good"
+                content: "You are export in enhancing and improving code. whenever you get a simple html code. you'll add tags like <Link>, <code>, <strong>, <ul>, <li>, <h1>, <h2>, <h3>, <blockquote> and so on wherever necessary and make code look good also correct information if there is any wrong information"
               }, {
                 role: 'user',
                 content: `Enhance this HTML code ${editorContent}`
