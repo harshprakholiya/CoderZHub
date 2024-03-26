@@ -1,31 +1,39 @@
 import { formatNumber } from '@/lib/utils';
 import StatesCard from './StatesCard';
+import { BadgeCounts } from '@/types';
 
 interface StatesParams {
   totalQuestions: number;
   totalAnswers: number;
+  badges: BadgeCounts;
+  reputation: number;
 }
 
-const States = ({ totalQuestions, totalAnswers }: StatesParams) => {
+const States = ({
+  totalQuestions,
+  totalAnswers,
+  badges,
+  reputation,
+}: StatesParams) => {
   return (
     <div className="mt-10">
-      <h4 className="h3-semibold text-invert">States</h4>
+      <h4 className="h3-semibold text-invert">Reputation - {reputation}</h4>
       <div className="mt-5 grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-3">
         <StatesCard
           imgUrl="/assets/icons/gold-medal.svg"
-          value={10}
+          value={badges.GOLD}
           title="Gold Badges"
         />
 
         <StatesCard
           imgUrl="/assets/icons/silver-medal.svg"
-          value={25}
+          value={badges.SILVER}
           title="Silver Badges"
         />
 
         <StatesCard
           imgUrl="/assets/icons/bronze-medal.svg"
-          value={86}
+          value={badges.BRONZE}
           title="bronze Badges"
         />
 
