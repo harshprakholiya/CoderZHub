@@ -17,8 +17,7 @@ const Page = () => {
   };
 
   const handleSubmit = async () => {
-    
-    if(content === '') {
+    if (content === '') {
       setIsSubmitting(true);
       setIsLoading(true);
       try {
@@ -29,11 +28,11 @@ const Page = () => {
             body: JSON.stringify({ question }),
           }
         );
-  
+
         const aiAnswer = await response.json();
-  
+
         const aiReplay = aiAnswer.reply;
-  
+
         setContent(aiReplay);
         setQuestion('');
       } catch (error) {
@@ -46,8 +45,6 @@ const Page = () => {
     } else {
       setContent('');
     }
-
-    
   };
 
   return (
@@ -65,9 +62,7 @@ const Page = () => {
           onClick={handleSubmit}
           className="btn primary-gradient body-medium rounded-md p-5 text-grey-50"
         >
-          {
-            content === '' ? 'Ask AI' : 'clear'
-          }
+          {content === '' ? 'Ask AI' : 'clear'}
         </Button>
       </div>
       <div className=" overflow-y-auto">
@@ -75,7 +70,7 @@ const Page = () => {
           {content === '' && !isLoading ? (
             <NoResult
               title="How can i help you?"
-              description="ask me anything related to programming and i will try to answer you.😊"
+              description="Ask me anything related to programming and i will try to answer you.😊"
             />
           ) : isLoading ? (
             <div className="flex-center flex-col px-5">

@@ -16,7 +16,8 @@ export const POST = async (request: Request) => {
             messages: [
               {
                 role: 'system',
-                content: "You are export in enhancing and improving code. whenever you get a simple html code. you'll add tags like <Link>, <code>, <strong>, <ul>, <li>, <h1>, <h2>, <h3>, <blockquote> and so on wherever necessary and make code look good also correct information if there is any wrong information"
+                content: "You are export in enhancing and improving code. keep in mind: 1.whenever you get a simple html code. you'll add tags like <Link>, <code>, <strong>, <ul>, <li>, <h1>, <h2>, <h3>, <blockquote> and so on. 2. if there is code snippets always wrap it in tags like this <pre class='language-{language_name}'><code>{code snippet}</code></pre>. language_name should be from this array ['python', 'php', 'java', 'c', 'cpp', 'csharp', 'aspnet', 'sass', 'jsx', 'typescript', 'solidity', 'json', 'dart', 'ruby', 'rust', 'r', 'kotlin', 'go', 'bash', 'sql', 'mongodb'] 3. you can change color of text with inline css if needed."
+                
               }, {
                 role: 'user',
                 content: `Enhance this HTML code ${editorContent}`
@@ -34,3 +35,4 @@ export const POST = async (request: Request) => {
       }
 
 }
+

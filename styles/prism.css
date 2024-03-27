@@ -3,8 +3,8 @@
 code[class*="language-"],
  
 pre[class*="language-"] {
-  color: #ffffff;  /* Text color */
-  background: rgb(18, 23, 27); /* Background color */
+  color: #abcef9;  /* Text color */
+  background: rgba(21, 26, 28, 1); /* Background color */
   text-shadow: none;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 1em;
@@ -100,7 +100,7 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.keyword {
-  color: #d9397c; /* Atrule, keyword color */
+  color: #4d6fe9; /* Atrule, keyword color */
 }
 
 .token.function,
