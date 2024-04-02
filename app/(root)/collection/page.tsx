@@ -52,7 +52,7 @@ export default async function Home({ searchParams }: any) {
             />
           ))
         ) : (
-          <NoResult 
+          <NoResult
             title="You haven’t saved any questions yet."
             description="You haven’t saved any questions yet. Save Questions you would want to visit letter 💡"
             hasButton={false}

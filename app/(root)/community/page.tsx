@@ -35,7 +35,7 @@ const Community = async ({ searchParams }: any) => {
         {result.users.length > 0 ? (
           result.users.map((user) => <UserCard key={user._id} user={user} />)
         ) : (
-          <NoResult
+          <NoResult 
             title="No users found"
             description="We couldn't find any users with the search query"
           />

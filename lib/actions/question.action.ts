@@ -222,7 +222,9 @@ export async function deleteQuestion(params: DeleteQuestionParams){
 
         await Interaction.deleteMany({question: questionId})
 
-        await Tag.updateMany({questions:questionId}, {$pull: {question:questionId}})
+        await Tag.updateMany({ questions: questionId }, { $pull: { questions: questionId }});
+
+        await Tag.find({ questions: { $size: 0 }}).deleteMany();
 
         revalidatePath(path)
 
