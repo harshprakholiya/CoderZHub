@@ -70,7 +70,7 @@
     @apply text-primaryDark-700 dark:text-primaryDark-200
   }
   .text-invert-3{
-    @apply text-primaryDark-400 dark:text-primaryDark-400
+    @apply text-primaryDark-400 dark:text-secondary-600
   }
   .text-invert-secondary{
     @apply text-gray-600 dark:text-gray-300

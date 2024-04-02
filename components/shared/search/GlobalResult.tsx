@@ -11,28 +11,7 @@ const GlobalResult = () => {
   const searchParams = useSearchParams();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState([
-    {
-      type: 'question',
-      id: '1',
-      title: 'How to create a new project?',
-    },
-    {
-      type: 'tag',
-      id: '2',
-      title: 'ReactJS',
-    },
-    {
-      type: 'user',
-      id: '3',
-      title: 'Harsh Rakholiya',
-    },
-    {
-      type: 'question',
-      id: '4',
-      title: 'How to create a new project?',
-    },
-  ]);
+  const [result, setResult] = useState([]);
 
   const global = searchParams.get('global');
   const type = searchParams.get('type');
@@ -76,9 +55,9 @@ const GlobalResult = () => {
   };
 
   return (
-    <div className="absolute top-full z-10 mt-3 w-full rounded-xl bg-grey-50 py-5 shadow-sm dark:bg-gray-800">
+    <div className="absolute top-full z-10 mt-3 w-full rounded-xl bg-grey-50 py-5 shadow-lg dark:bg-primaryDark-800">
       <GlobalFilters />
-      <div className="my-5 h-[1px] bg-gray-50/50" />
+      <div className="my-5 h-[1px] bg-grey-100 dark:bg-grey-900 " />
 
       <div className="space-y-5">
         <p className="text-invert paragraph-semibold px-5">Top Match</p>
@@ -99,8 +78,18 @@ const GlobalResult = () => {
                   className="flex w-full cursor-pointer items-start gap-3 px-5 py-2.5 hover:bg-gray-50/50 dark:hover:bg-gray-700/50"
                 >
                   <Image
-                    src="/assets/icons/tag.svg"
-                    alt="tag"
+                    src={
+                      item.type === 'tag'
+                        ? '/assets/icons/tag.svg'
+                        : item.type === 'question'
+                          ? '/assets/icons/question.svg'
+                          : item.type === 'answer'
+                            ? '/assets/icons/answer.svg'
+                            : item.type === 'user'
+                              ? '/assets/icons/user.svg'
+                              : '/assets/icons/tag.svg'
+                    }
+                    alt="icon"
                     height={18}
                     width={18}
                     className="invert-colors mt-1 object-contain"
@@ -109,7 +98,7 @@ const GlobalResult = () => {
                     <p className="body-medium text-invert line-clamp-1">
                       {item.title}
                     </p>
-                    <p className="text-invert-3 small-medium mt-1 font-bold capitalize">
+                    <p className="small-medium text-invert-3 mt-1 font-bold capitalize">
                       {item.type}
                     </p>
                   </div>

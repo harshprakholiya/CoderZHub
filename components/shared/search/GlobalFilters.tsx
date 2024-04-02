@@ -38,14 +38,14 @@ const GlobalFilters = () => {
 
   return (
     <div className="flex items-center gap-5 px-5">
-      <p className="text-invert-secondary body-medium">Type: </p>
+      
       <div className="flex gap-3">
         {GlobalSearchFilters.map((item) => (
           <Button
             key={item.value}
             type="button"
-            className={`btn small-medium text-invert rounded-3xl bg-grey-200 px-5 py-0.5 capitalize duration-100 hover:text-primary-500
-              ${active === item.value ? 'primary-gradient hover:text-white' : ''}
+            className={`btn small-medium text-invert rounded-3xl bg-grey-100 px-5 py-0.5 capitalize duration-200 hover:bg-primary-400 hover:text-grey-50 dark:bg-primaryDark-700 dark:hover:bg-primary-400
+              ${active === item.value ? 'primary-gradient text-white hover:text-white ' : ''}
             `}
             onClick={() => handleTypeClick(item.value)}
           >
