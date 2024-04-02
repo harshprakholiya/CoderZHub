@@ -25,7 +25,7 @@ interface questionCardProps {
 
 // TODO: add clerkId params to all QuestionCard 
 
-const QuestionCard = ({
+const QuestionCard = ({  
   clerkId,
   _id,
   title,
@@ -39,6 +39,10 @@ const QuestionCard = ({
 
 
   const showActionButton = clerkId && clerkId === author.clerkId;
+
+  console.log(author.clerkId, clerkId, showActionButton)
+  
+
 
 
   return (

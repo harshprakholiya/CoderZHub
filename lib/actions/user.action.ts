@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 "use server"
-import { FilterQuery } from "mongoose";
+import { FilterQuery, model } from "mongoose";
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
 import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetSavedQuestionsParams, GetUserByIdParams, GetUserInfoParams, UpdateUserParams, getUserSatesParams, toggleSaveQuestionParams } from "./shared.types";
@@ -335,7 +335,7 @@ export async function getUserQuestions(params: getUserSatesParams){
       .skip(skipCount)
       .limit(pageSize)
       .populate('tags', '_id name')
-      .populate('author', '_id clerkId, name picture');
+      .populate({ path: 'author', model: User });
 
       const isNextQuestions = totalQuestions > skipCount + userQuestions.length;
    

@@ -49,6 +49,7 @@ export default async function Home({ searchParams }: any) {
               views={question.views}
               answers={question.answers}
               createdAt={question.createdAt}
+              clerkId={userId}
             />
           ))
         ) : (

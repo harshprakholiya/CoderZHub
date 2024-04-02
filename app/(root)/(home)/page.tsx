@@ -17,6 +17,8 @@ export default async function Home({ searchParams }: any) {
     filter: searchParams?.f,
     page: searchParams?.page ? +searchParams.page : 1,
   });
+  console.log("Home Page");
+  console.log(result.question)
   return (
     <main>
       <div className="flex-between gap-4 ">

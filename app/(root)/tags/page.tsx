@@ -34,7 +34,7 @@ const Tags = async ({searchParams}: any) => {
         />
       </div>
 
-      <section className="flex-center mt-12 flex-wrap gap-4">
+      <section className="mt-12 flex flex-wrap gap-4">
         {result.tags.length > 0 ? (
           result.tags.map((tag) => (
             <Link

@@ -13,7 +13,7 @@ const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
     userId,
     page: searchParams.page ? +searchParams.page : 1,
   });
-
+  console.log(result.questions);
   return (
     <div className="mt-10 flex w-full flex-col gap-6">
       {result.questions.length > 0 ? (
