@@ -82,17 +82,13 @@ export async function getAllTags(params: GetAllTagsParams){
 export async function getQuestionByTagId(params: getQuestionByTagIdParams){
   try {
     connectToDatabase();
-  
-    
-    
-    
     const { tagId, page=1, pageSize=10, searchQuery } = params;
     
     const skipCount = (page - 1) * pageSize;
 
     const tagFilter: FilterQuery<ITag> = {_id: tagId};
 
-    const tag = await Tag.findOne({ tagFilter })
+    const tag = await Tag.findOne(tagFilter)
       .populate({
         path: 'questions',
         model: 'Question',

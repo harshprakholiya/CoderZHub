@@ -6,18 +6,18 @@ import { getQuestionByTagId } from '@/lib/actions/tag.actions';
 import Image from 'next/image';
 
 const Page = async ({ params, searchParams }: any) => {
+  console.log(params.id);
   const result = await getQuestionByTagId({
     tagId: params.id,
     searchQuery: searchParams.q,
     page: searchParams?.page ? +searchParams.page : 1,
   });
 
-
-
   return (
     <main>
-      <h1 className="sm:h1-bold h2-bold text-invert w-full">
-        {result.tagTitle}
+      <h1 className="sm:h1-bold h2-bold text-invert w-full ">
+        Questions associated with:{' '}
+        <span className="capitalize">{result.tagTitle}</span>
       </h1>
 
       <div className="mt-11 w-full">
@@ -77,7 +77,10 @@ const Page = async ({ params, searchParams }: any) => {
       </div>
 
       <div className="mt-10 w-full items-center">
-        <Pagination pageNumber={searchParams?.page ? +searchParams.page : 1} isNext={result.isNext}/>
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
       </div>
     </main>
   );
