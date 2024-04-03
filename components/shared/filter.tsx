@@ -38,12 +38,15 @@ const Filter = ({ filters, otherClasses, containerClasses }: filterProps) => {
   };
   return (
     <div className={`relative ${containerClasses}`}>
-      <Select onValueChange={handleUpdateParams} defaultValue={paramsFilters || undefined}>
+      <Select
+        onValueChange={handleUpdateParams}
+        defaultValue={paramsFilters || undefined}
+      >
         <SelectTrigger
           className={`${otherClasses} body-regular filter_background border px-5 py-2.5 text-gray-400`}
         >
           <div className=" line-clamp-1 flex-1 text-left">
-            <SelectValue placeholder="Filter" />
+            <SelectValue placeholder="Filter"/>
           </div>
         </SelectTrigger>
         <SelectContent className="text-invert gap-3 border-none">

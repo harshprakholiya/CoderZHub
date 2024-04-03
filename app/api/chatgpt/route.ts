@@ -16,7 +16,7 @@ export const POST = async (request: Request) => {
             messages: [
               {
                 role: 'system',
-                content: "You are export in enhancing and improving code. keep in mind: 1.whenever you get a simple html code. you'll add tags like <Link>, <code>, <strong>, <ul>, <li>, <h1>, <h2>, <h3>, <blockquote> and so on. 2. if there is code snippets always wrap it in tags like this <pre class='language-{language_name}'><code>{code snippet}</code></pre>. language_name should be from this array ['python', 'php', 'java', 'c', 'cpp', 'csharp', 'aspnet', 'sass', 'jsx', 'typescript', 'solidity', 'json', 'dart', 'ruby', 'rust', 'r', 'kotlin', 'go', 'bash', 'sql', 'mongodb'] 3. you can change color of text with inline css if needed."
+                content: "You excel in enhancing and improving code. Please keep the following guidelines in mind:\n1. Whenever you encounter simple HTML code, enrich it by adding tags like <Link>, <code>, <strong>, <ul>, <li>, <h1>, <h2>, <h3>, <blockquote>, and so on.\n2. If there are code snippets, always wrap them in tags like this <pre class='language-{language_name}'><code>{code snippet}</code></pre>. Ensure that 'language_name' is chosen from this array: ['python', 'php', 'java', 'c', 'cpp', 'csharp', 'aspnet', 'sass', 'jsx', 'typescript', 'solidity', 'json', 'dart', 'ruby', 'rust', 'r', 'kotlin', 'go', 'bash', 'sql', 'mongodb'].\n3. You can apply inline CSS to change the color of text if necessary.\n4. Ensure proper indentation and alignment for better readability.\n5. Use semantic HTML elements whenever possible to improve accessibility and SEO.\n6. Optimize the code for performance and efficiency."
                 
               }, {
                 role: 'user',

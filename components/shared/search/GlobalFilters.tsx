@@ -12,7 +12,7 @@ const GlobalFilters = () => {
 
   const typeParams = searchParams.get('type');
 
-  const [active, setActive] = useState(typeParams || 'question');
+  const [active, setActive] = useState(typeParams || '');
 
   const handleTypeClick = (item: string) => {
     if (active === item) {
@@ -38,7 +38,6 @@ const GlobalFilters = () => {
 
   return (
     <div className="flex items-center gap-5 px-5">
-      
       <div className="flex gap-3">
         {GlobalSearchFilters.map((item) => (
           <Button

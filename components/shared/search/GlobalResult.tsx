@@ -57,7 +57,7 @@ const GlobalResult = () => {
   return (
     <div className="absolute top-full z-10 mt-3 w-full rounded-xl bg-grey-50 py-5 shadow-lg dark:bg-primaryDark-800">
       <GlobalFilters />
-      <div className="my-5 h-[1px] bg-grey-100 dark:bg-grey-900 " />
+      <div className="my-5 h-[1px] bg-primary-500 " />
 
       <div className="space-y-5">
         <p className="text-invert paragraph-semibold px-5">Top Match</p>

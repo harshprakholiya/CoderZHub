@@ -22,10 +22,9 @@ interface questionCardProps {
   clerkId?: string | null;
 }
 
+// TODO: add clerkId params to all QuestionCard
 
-// TODO: add clerkId params to all QuestionCard 
-
-const QuestionCard = ({  
+const QuestionCard = ({
   clerkId,
   _id,
   title,
@@ -36,14 +35,9 @@ const QuestionCard = ({
   answers,
   createdAt,
 }: questionCardProps) => {
-
-
   const showActionButton = clerkId && clerkId === author.clerkId;
 
-  console.log(author.clerkId, clerkId, showActionButton)
-  
-
-
+  console.log(author.clerkId, clerkId, showActionButton);
 
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
@@ -83,29 +77,30 @@ const QuestionCard = ({
           isAuthor
           value={author.name}
         />
-
-        <Metric
-          imgUrl="/assets/icons/like.svg"
-          alt="upvotes"
-          title="Votes"
-          textStyles="small-medium card-text-invert-secondary"
-          value={upvotes.length === 0 ? '0' : formatNumber(upvotes.length)}
-        />
-        <Metric
-          imgUrl="/assets/icons/message.svg"
-          alt="message"
-          title="Answers"
-          textStyles="small-medium card-text-invert-secondary"
-          value={answers.length === 0 ? '0' : formatNumber(answers.length)}
-          href={`/question/${_id}`}
-        />
-        <Metric
-          imgUrl="/assets/icons/eye.svg"
-          alt="eye"
-          title="Views"
-          textStyles="small-medium card-text-invert-secondary"
-          value={views === 0 ? '0' : formatNumber(views)}
-        />
+        <div className="flex-sm:justify-start flex items-center gap-3 max-sm:flex-wrap">
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="upvotes"
+            title="Votes"
+            textStyles="small-medium card-text-invert-secondary"
+            value={upvotes.length === 0 ? '0' : formatNumber(upvotes.length)}
+          />
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="message"
+            title="Answers"
+            textStyles="small-medium card-text-invert-secondary"
+            value={answers.length === 0 ? '0' : formatNumber(answers.length)}
+            href={`/question/${_id}`}
+          />
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="eye"
+            title="Views"
+            textStyles="small-medium card-text-invert-secondary"
+            value={views === 0 ? '0' : formatNumber(views)}
+          />
+        </div>
       </div>
     </div>
   );
