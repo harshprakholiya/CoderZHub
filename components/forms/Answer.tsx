@@ -18,6 +18,7 @@ import { Button } from '../ui/button';
 import Image from 'next/image';
 import { createAnswer } from '@/lib/actions/answer.action';
 import { usePathname } from 'next/navigation';
+import Loading from '../shared/Loading';
 
 interface AnswerProps {
   question: string;
@@ -99,6 +100,8 @@ const Answers = ({ question, questionId, authorId }: AnswerProps) => {
 
   return (
     <div>
+      {isSubmitting && <Loading title="Submitting your answer" />}
+      {isSubmittingAI && <Loading title="AI is enhancing your answer 😀" />}
       <div className="mt-8 flex w-full flex-row items-center justify-between gap-5 max-sm:mt-3 sm:gap-2">
         <h4 className="h3-semibold max-sm:paragraph-semibold  text-invert max-sm:text-center">
           Write your answer

@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ReloadIcon } from '@radix-ui/react-icons';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -63,7 +62,12 @@ const GlobalResult = () => {
         <p className="text-invert paragraph-semibold px-5">Top Match</p>
         {isLoading ? (
           <div className="flex-center flex-col px-5">
-            <ReloadIcon className="mt-3 h-7 w-7 animate-spin text-primary-400" />
+            <Image
+              src="/assets/animation/loading-animation.svg"
+              alt="loading animation"
+              width={50}
+              height={50}
+            />
             <p className="paragraph-regular text-invert-secondary mt-5">
               Loading...
             </p>
@@ -106,6 +110,8 @@ const GlobalResult = () => {
               ))
             ) : (
               <div className="flex-center flex-col px-5">
+                <p className="text-[50px]">🧐</p>
+
                 <p className="text-invert-secondary body-regular px-5 py-2.5">
                   No results found
                 </p>

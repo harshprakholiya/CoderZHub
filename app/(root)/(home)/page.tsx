@@ -17,8 +17,8 @@ export default async function Home({ searchParams }: any) {
     filter: searchParams?.f,
     page: searchParams?.page ? +searchParams.page : 1,
   });
-  console.log("Home Page");
-  console.log(result.question)
+  console.log('Home Page');
+  console.log(result.question);
   return (
     <main>
       <div className="flex-between gap-4 ">
@@ -75,7 +75,10 @@ export default async function Home({ searchParams }: any) {
         )}
       </div>
       <div className="mt-10 w-full items-center">
-        <Pagination pageNumber={searchParams?.page ? +searchParams.page : 1} isNext={result.isNext}/>
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
       </div>
     </main>
   );

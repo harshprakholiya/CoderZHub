@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} custom-scrollbar`}
+        className={`${inter.variable} ${spaceGrotesk.variable} custom-scrollbar relative `}
       >
         <ClerkProvider
           appearance={{
