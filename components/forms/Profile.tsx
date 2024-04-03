@@ -19,6 +19,7 @@ import { useState } from 'react';
 import { ProfileSchema } from '@/lib/validation';
 import { usePathname, useRouter } from 'next/navigation';
 import { updateUser } from '@/lib/actions/user.action';
+import Loading from '../shared/Loading';
 
 interface Props {
   clerkId: string;
@@ -69,6 +70,12 @@ const Profile = ({ clerkId, user }: Props) => {
 
   return (
     <Form {...form}>
+      {
+        isSubmitting && (
+          <Loading title="Updating..."/>
+        )
+
+      }
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="mt-9 flex w-full flex-col gap-9"
@@ -89,7 +96,7 @@ const Profile = ({ clerkId, user }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className='text-error-500'/>
             </FormItem>
           )}
         />
@@ -109,7 +116,7 @@ const Profile = ({ clerkId, user }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className='text-error-500'/>
             </FormItem>
           )}
         />
@@ -128,7 +135,7 @@ const Profile = ({ clerkId, user }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className='text-error-500'/>
             </FormItem>
           )}
         />
@@ -146,7 +153,7 @@ const Profile = ({ clerkId, user }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className='text-error-500'/>
             </FormItem>
           )}
         />
@@ -164,7 +171,7 @@ const Profile = ({ clerkId, user }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className='text-error-500'/>
             </FormItem>
           )}
         />
