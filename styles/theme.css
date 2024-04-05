@@ -90,7 +90,7 @@
   }
   .question-tag-bg{
     @apply bg-transparent !border-primary-main dark:border-primary-400 text-primary-800
-    dark:text-primary-200 hover:!border-error-400
+    dark:text-primary-200 hover:!border-error-500
   }
 
   /* TODO add hover effect  */

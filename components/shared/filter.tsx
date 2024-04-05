@@ -5,10 +5,11 @@ import {
   Select,
   SelectContent,
   SelectGroup,
+  SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { SelectItem } from '@radix-ui/react-select';
+
 import { formUrlQuery } from '@/lib/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -24,6 +25,7 @@ interface filterProps {
 const Filter = ({ filters, otherClasses, containerClasses }: filterProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  console.log(filters)
 
   const paramsFilters = searchParams.get('f');
 

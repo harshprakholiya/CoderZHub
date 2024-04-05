@@ -93,6 +93,7 @@ interface RemoveKeysFromQueryParams {
   params: string;
   keys: string[];
 }
+
 export const removeKeysFromQuery = ({ params, keys }: RemoveKeysFromQueryParams) => {
   const currentUrl = qs.parse(params);
  keys.forEach((key) => {

@@ -16,6 +16,7 @@ const GlobalResult = () => {
   const type = searchParams.get('type');
 
   useEffect(() => {
+
     const fetchResult = async () => {
       setResult([]);
       setIsLoading(true);
@@ -35,6 +36,7 @@ const GlobalResult = () => {
     if (global) {
       fetchResult();
     }
+    
   }, [global, type]);
 
   const renderLink = (type: string, id: string) => {

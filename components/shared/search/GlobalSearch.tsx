@@ -49,7 +49,7 @@ const GlobalSearch = () => {
 
         router.push(newUrl, { scroll: false });
       } else {
-        if (query) {
+        if (!query) {
           const newUrl = removeKeysFromQuery({
             params: searchParam.toString(),
             keys: ['global', 'type'],

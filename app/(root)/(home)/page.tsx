@@ -19,6 +19,7 @@ export default async function Home({ searchParams }: any) {
   });
   console.log('Home Page');
   console.log(result.question);
+
   return (
     <main>
       <div className="flex-between gap-4 ">
