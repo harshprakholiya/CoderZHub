@@ -13,6 +13,8 @@ export async function viewQuestion(params: ViewQuestionParams){
 
         await Question.findByIdAndUpdate(questionId, {$inc: { views: 1}});
         if(userId){
+
+
             const existingInteraction = await Interaction.findOne({
                 user: userId,
                 action: 'view',
@@ -26,6 +28,11 @@ export async function viewQuestion(params: ViewQuestionParams){
                 action: 'view',
                 question: questionId,
             })
+
+
+
+
+            
         }
     } catch (error) {
         console.log(error);

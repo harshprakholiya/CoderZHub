@@ -114,7 +114,6 @@ const Voting = ({
     }
   };
 
-  //  TODO: complete server action for this function
   const handleSave = async () => {
     setSaved(!saved);
     await toggleSaveQuestion({

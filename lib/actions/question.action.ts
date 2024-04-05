@@ -101,13 +101,12 @@ export async function createQuestion(params: CreateQuestionParams) {
             action: 'ask_question',
             question: question._id,
             tags: tagDocument
-        })  
+        })
 
         await User.findByIdAndUpdate(author, {$inc: { reputation: 5}});
-        
-        revalidatePath(path)
 
-        
+        revalidatePath(path)
+       
 
     } catch (error) {
         console.log(`createQuestion : ${error}`)
@@ -212,6 +211,7 @@ export async function downvoteQuestion(params: QuestionVoteParams){
 }
 
 export async function deleteQuestion(params: DeleteQuestionParams){
+
     try {
         connectToDatabase();
         const { questionId, path } = params;
@@ -231,7 +231,9 @@ export async function deleteQuestion(params: DeleteQuestionParams){
     } catch (error) {
         console.log(error);
         throw error;
-    }
+    }    
+
+
 }
 
 export async function updateQuestion(params: UpdateQuestionParams){

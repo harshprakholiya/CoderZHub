@@ -13,6 +13,7 @@ interface Props {
 }
 
 const EditDeleteAction = ({ type, itemId }: Props) => {
+  
   const pathname = usePathname();
   const router = useRouter();
 
@@ -24,7 +25,7 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
   const handelDelete = async () => {
     setIsDeleting(true);
     if (type === 'Question') {
-      await deleteQuestion({ questionId: JSON.parse(itemId), path: pathname });
+      await deleteQuestion({ questionId: JSON.parse(itemId), path: pathname,  });
     } else if (type === 'Answer') {
       await deleteAnswer({ answerId: JSON.parse(itemId), path: pathname });
     }

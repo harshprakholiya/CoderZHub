@@ -37,6 +37,7 @@ export async function createAnswer(params: CreateAnswerParams){
             answer: newAnswer._id,
             tags: answerObject.tags
         });
+        
 
         await User.findByIdAndUpdate(author, { $inc: { reputation: 10 } });
 
