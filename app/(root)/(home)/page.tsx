@@ -5,20 +5,39 @@ import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { Button } from '@/components/ui/button';
 import { HomePageFilters } from '@/constants/filters';
-import { getQuestions } from '@/lib/actions/question.action';
+import {
+  getQuestions,
+  getRecommendedQuestions,
+} from '@/lib/actions/question.action';
 import Link from 'next/link';
 import { auth } from '@clerk/nextjs';
 import Pagination from '@/components/shared/Pagination';
 
 export default async function Home({ searchParams }: any) {
-  const { userId: clerkId } = auth();
-  const result = await getQuestions({
-    searchQuery: searchParams?.q,
-    filter: searchParams?.f,
-    page: searchParams?.page ? +searchParams.page : 1,
-  });
-  console.log('Home Page');
-  console.log(result.question);
+  const { userId } = auth();
+
+  let result: any;
+
+  if (searchParams?.f === 'recommended') {
+    if (userId) {
+      result = await getRecommendedQuestions({
+        userId,
+        searchQuery: searchParams?.q,
+        page: searchParams?.page ? +searchParams.page : 1,
+      });
+    } else {
+      result = {
+        question: [],
+        isNext: false,
+      };
+    }
+  } else {
+    result = await getQuestions({
+      searchQuery: searchParams?.q,
+      filter: searchParams?.f,
+      page: searchParams?.page ? +searchParams.page : 1,
+    });
+  }
 
   return (
     <main>
@@ -49,7 +68,7 @@ export default async function Home({ searchParams }: any) {
 
       <div className="mt-10 flex w-full flex-col gap-6">
         {result.question.length > 0 ? (
-          result.question.map((question) => (
+          result.question.map((question: any) => (
             <QuestionCard
               key={question._id}
               _id={question._id}
@@ -60,16 +79,14 @@ export default async function Home({ searchParams }: any) {
               views={question.views}
               answers={question.answers}
               createdAt={question.createdAt}
-              clerkId={clerkId}
+              clerkId={userId}
             />
           ))
         ) : (
           <NoResult
             title="There’s no Question to show"
-            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the
-          discussion. our query could be the next big thing others learn from. Get
-          involved! 💡"
-            hasButton={true}
+            description={`${searchParams.f === 'recommended' ? 'Please interact with others questions to get recommended questions tailored to you 😉' : 'Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved!'}`}
+            hasButton={searchParams.f !== 'recommended'}
             btnText="Ask a Question"
             btnLink="/ask-question"
           />
