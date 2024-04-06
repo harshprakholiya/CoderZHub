@@ -6,25 +6,52 @@ import { connectToDatabase } from "../mongoose";
 import { GetAllTagsParams, GetTopInteractedTagsParams, getQuestionByTagIdParams } from "./shared.types";
 import Tag, { ITag } from "@/database/tags.model";
 import { FilterQuery } from "mongoose";
+import Interaction from "@/database/interaction.model";
 
 export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
-    try {
-        connectToDatabase();
-        const { userId } = params;
-        const user = await User.findById(userId);
+  try {
+      connectToDatabase();
+      const { userId, limit = 10 } = params; // Default limit to 10 if not provided
 
-        if(!user) throw new Error("User not found");
+      // Find the user
+      const user = await User.findById(userId);
+      if (!user) {
+          throw new Error("User not found");
+      }
 
-        // Find interaction for the user and group by tags
-        // TODO: Create Interactions model 
+      // Find interactions by the user
+      const interactions = await Interaction.find({ user: userId });
 
-        return [{ _id: "1", name: "tag1" }, { _id: "2", name: "tag2" }];
+      // Aggregate tags from interactions
+      const tagCounts: { [tagId: string]: number } = {};
+      interactions.forEach(interaction => {
 
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
+        interaction.tags.forEach((tagId: string) => { 
+          if (tagCounts[tagId]) {
+              tagCounts[tagId]++;
+          } else {
+              tagCounts[tagId] = 1;
+          }
+          });
+      });
+
+      // Sort tags by interaction count
+      const sortedTags = Object.entries(tagCounts)
+          .sort(([, countA], [, countB]) => countB - countA) // Sort by count in descending order
+          .slice(0, limit) // Take only the top 'limit' tags
+          .map(([tagId]) => tagId);
+
+      // Find tag details from Tag model
+      const topTags = await Tag.find({ _id: { $in: sortedTags } });
+
+      return topTags.map(tag => ({ _id: tag._id, name: tag.name }));
+
+  } catch (error) {
+      console.log(error);
+      throw error;
+  }
 }
+
 
 export async function getAllTags(params: GetAllTagsParams){
   try {

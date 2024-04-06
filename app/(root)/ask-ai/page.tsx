@@ -6,6 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Ask-AI",
+  description: "Ask AI anything related to programming and get answers.",
+};
 
 const Page = () => {
   const [question, setQuestion] = useState('');

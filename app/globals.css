@@ -173,9 +173,12 @@ code {
   @apply bg-[#f2f8ff] dark:bg-[#151a1c];
 }
 .markdown code {
-  color: #5a7296 !important;
-  padding:3px;
-  border-radius: 3px;
+  color: #6498ff !important;
+  padding:2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  display: inline-flex;
 }
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {

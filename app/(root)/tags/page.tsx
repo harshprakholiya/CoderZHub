@@ -5,6 +5,14 @@ import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { TagFilters } from '@/constants/filters';
 import { getAllTags } from '@/lib/actions/tag.actions';
 import Link from 'next/link';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+
+  title: "CoderZHub | Tags",
+  description: "Questions associated with a tag.",
+};
 
 const Tags = async ({searchParams}: any) => {
   const result = await getAllTags({

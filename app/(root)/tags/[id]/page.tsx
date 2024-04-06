@@ -4,9 +4,18 @@ import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 
 import { getQuestionByTagId } from '@/lib/actions/tag.actions';
 import Image from 'next/image';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Tags",
+  description: "Questions associated with a tag.",
+};
+
+
+
 
 const Page = async ({ params, searchParams }: any) => {
-  console.log(params.id);
+
   const result = await getQuestionByTagId({
     tagId: params.id,
     searchQuery: searchParams.q,

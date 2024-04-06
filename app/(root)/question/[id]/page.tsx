@@ -10,6 +10,13 @@ import { formatNumber, getTimeStamps } from '@/lib/utils';
 import { auth } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Question",
+  description: "View a question, and answer it.",
+};
 
 const Page = async ({ params, searchParams }: any) => {
   const { userId: clerkId } = auth();

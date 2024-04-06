@@ -15,7 +15,11 @@ interface UserProps {
 }
 
 const UserCard = async ({ user }: UserProps) => {
-  const interactedTags = await getTopInteractedTags({ userId: user._id });
+  const interactedTags = await getTopInteractedTags({
+    userId: user._id,
+    limit: 2,
+  });
+
   return (
     <div className="w-full rounded-2xl shadow-md max-xs:min-w-full xs:w-[260px]">
       <div className="card-wrapper flex w-full flex-col items-center justify-center rounded-2xl p-8">
@@ -37,13 +41,15 @@ const UserCard = async ({ user }: UserProps) => {
 
         <div className="mt-5">
           {interactedTags.length > 0 ? (
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {interactedTags.map((tag) => (
                 <RenderTags key={tag._id} _id={tag._id} name={tag.name} />
               ))}
             </div>
           ) : (
-            <Badge>No tags yet</Badge>
+            <Badge className="primary-text-gradient paragraph-medium border-none">
+              No tags yet
+            </Badge>
           )}
         </div>
       </div>

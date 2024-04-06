@@ -1,6 +1,13 @@
 import Profile from '@/components/forms/Profile';
 import { getUserById } from '@/lib/actions/user.action';
 import { auth } from '@clerk/nextjs';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Edit Profile",
+  description: "Edit your profile.",
+};
 
 const Page = async ({ params }: any) => {
   const { userId } = auth();

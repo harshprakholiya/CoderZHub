@@ -6,6 +6,13 @@ import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { QuestionFilters } from '@/constants/filters';
 import { getSavedQuestions } from '@/lib/actions/user.action';
 import { auth } from '@clerk/nextjs';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | collection",
+  description: "Explore all questions you saved on CoderZHub.",
+};
 
 export default async function Home({ searchParams }: any) {
   const { userId } = auth();

@@ -1,4 +1,11 @@
 import React from 'react';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Sign up",
+  description: "Sign up to your account",
+};
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

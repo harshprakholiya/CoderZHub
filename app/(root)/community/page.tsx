@@ -4,12 +4,22 @@ import Filter from '@/components/shared/filter';
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar';
 import { UserFilters } from '@/constants/filters';
 import { getAllUsers } from '@/lib/actions/user.action';
+
+
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Community",
+  description: "Explore all users on CoderZHub. Follow users and get updates on their activities.",
+};
 const Community = async ({ searchParams }: any) => {
   const result = await getAllUsers({
     searchQuery: searchParams?.q,
     filter: searchParams?.filter,
     page: searchParams?.page ? +searchParams.page : 1,
   });
+
 
   return (
     <>

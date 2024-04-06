@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
     const { editorContent } = await request.json();
-    console.log("editor content "+ editorContent)
+
 
     try {
         const response = await fetch('https://api.openai.com/v1/chat/completions', {

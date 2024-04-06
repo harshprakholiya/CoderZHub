@@ -9,7 +9,7 @@ import Interaction from "@/database/interaction.model";
 export async function viewQuestion(params: ViewQuestionParams){
     try {
        await connectToDatabase();
-        const {  questionId, userId } = params;
+        const {  questionId, userId, } = params;
 
 
         const question = await Question.findById(questionId);
@@ -18,15 +18,16 @@ export async function viewQuestion(params: ViewQuestionParams){
         await Question.findByIdAndUpdate(questionId, {$inc: { views: 1}});
 
         if(userId){
+
             const existingInteraction = await Interaction.findOne({
                 user: userId,
                 action: 'view',
                 question: questionId,
+                tags: question.tags
 
             });
 
-            if(existingInteraction) return  console.log('interaction already exists'); 
-
+            if(existingInteraction) return  console.log('interaction already exists');
 
             await Interaction.create({
                 user: userId,

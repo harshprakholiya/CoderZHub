@@ -3,6 +3,13 @@ import { getUserById } from '@/lib/actions/user.action';
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import React from 'react';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Ask a question",
+  description: "Ask a question and get answers from the community.",
+};
 
 const AskQuestion = async () => {
   const { userId } = auth();

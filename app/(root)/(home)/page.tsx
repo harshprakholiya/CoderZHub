@@ -12,6 +12,13 @@ import {
 import Link from 'next/link';
 import { auth } from '@clerk/nextjs';
 import Pagination from '@/components/shared/Pagination';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Home",
+  description: "Explore all questions on CoderZHub. Ask a question and get answers from the community.",
+};
 
 export default async function Home({ searchParams }: any) {
   const { userId } = auth();

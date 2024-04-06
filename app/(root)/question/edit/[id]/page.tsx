@@ -2,6 +2,13 @@ import Question from '@/components/forms/Question';
 import { getQuestionById } from '@/lib/actions/question.action';
 import { getUserById } from '@/lib/actions/user.action';
 import { auth } from '@clerk/nextjs';
+import type { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "CoderZHub | Edit Question",
+  description: "Edit a question.",
+};
 
 const page = async ({ params }: any) => {
   const { userId } = auth();

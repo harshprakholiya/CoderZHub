@@ -25,7 +25,7 @@ interface filterProps {
 const Filter = ({ filters, otherClasses, containerClasses }: filterProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  console.log(filters)
+
 
   const paramsFilters = searchParams.get('f');
 
