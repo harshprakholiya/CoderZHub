@@ -101,7 +101,7 @@ export async function  getAllUsers( params: GetAllUsersParams) {
     // const totalQuestions = await Question.countDocuments(query);
     // const isNext = totalQuestions > skipCount + question.length;
 
-    const { searchQuery, filter, page=1, pageSize=6 } = params;    
+    const { searchQuery, filter, page=1, pageSize=100 } = params;    
     const query: FilterQuery<typeof User> = {}
 
     let sortOptions = {};

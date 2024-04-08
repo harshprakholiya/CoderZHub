@@ -39,6 +39,7 @@ export default async function Home({ searchParams }: any) {
       };
     }
   } else {
+    
     result = await getQuestions({
       searchQuery: searchParams?.q,
       filter: searchParams?.f,

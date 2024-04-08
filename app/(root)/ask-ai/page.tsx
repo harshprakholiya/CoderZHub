@@ -35,6 +35,7 @@ const Page = () => {
         const aiReplay = aiAnswer.reply;
 
         setContent(aiReplay);
+        
         setQuestion('');
       } catch (error) {
         console.log(error);

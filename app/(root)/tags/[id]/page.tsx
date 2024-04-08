@@ -6,11 +6,11 @@ import { getQuestionByTagId } from '@/lib/actions/tag.actions';
 import Image from 'next/image';
 import type { Metadata } from "next";
 
+
 export const metadata: Metadata = {
   title: "CoderZHub | Tags",
   description: "Questions associated with a tag.",
 };
-
 
 
 
@@ -52,7 +52,6 @@ const Page = async ({ params, searchParams }: any) => {
               views={question.views}
               answers={question.answers}
               createdAt={question.createdAt}
-              clerkId={question.author.clerkId}
             />
           ))
         ) : (
