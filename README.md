@@ -1,4 +1,7 @@
-# CoderZHub
+## License
+
+You are allowed to use this code for learning purposes only. If you modify or change the code to create your application, you must mention [@your_username] as the original author.
+ CoderZHub
 
 Welcome to CoderZHub, a community-driven platform where developers can ask and answer programming questions. This project is developed by Harsh Rakholiya.
 
@@ -65,3 +68,7 @@ To visit the live site, click [here](https://coderzhub.vercel.app/).
 Feel free to explore and contribute to our project! If you have any questions or feedback, don't hesitate to reach out. Happy coding! 🚀
 
 
+
+## License
+
+You are allowed to use this code for learning purposes only. If you modify or change the code to create your application, you must mention [@harshprakholiya] as the original author.
