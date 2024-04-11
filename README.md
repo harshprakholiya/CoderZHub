@@ -71,4 +71,4 @@ Feel free to explore and contribute to our project! If you have any questions or
 
 ## License
 
-You are allowed to use this code for learning purposes only. If you modify or change the code to create your application, you must mention [@harshprakholiya] as the original author.
+You are allowed to use this code for learning purposes only. If you modify or change the code to create your application, you must mention @harshprakholiya as the original author.
