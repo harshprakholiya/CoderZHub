@@ -30,7 +30,7 @@
     "lucide-react": "^0.319.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.2.0",
-    "next": "14.0.4",
+    "next": "14.2.35",
     "nextjs-toploader": "^1.6.6",
     "prettier": "^3.2.1",
     "prismjs": "^1.29.0",
